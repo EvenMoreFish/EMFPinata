@@ -5,7 +5,7 @@ dependencyResolutionManagement {
         create("libs") {
             library("paper-api", "io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
             library("evenmorefish", "com.oheers:EvenMoreFish:1.7.3")
-            library("commandapi", "dev.jorel:commandapi-bukkit-shade:9.5.3")
+            library("commandapi", "dev.jorel:commandapi-bukkit-shade:9.6.0")
             library("bstats", "org.bstats:bstats-bukkit:3.0.2")
             library("mythicmobs", "io.lumine:Mythic-Dist:5.7.1")
 
