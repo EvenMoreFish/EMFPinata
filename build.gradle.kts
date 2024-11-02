@@ -1,5 +1,3 @@
-import net.minecrell.pluginyml.paper.PaperPluginDescription
-
 plugins {
     `java-library`
     `maven-publish`
@@ -18,7 +16,7 @@ repositories {
 
 dependencies {
     compileOnly(libs.paper.api)
-    compileOnly(files("$projectDir/libs/even-more-fish-1.7.3-RELEASE.jar"))
+    compileOnly(files("$projectDir/libs/even-more-fish-1.7.4-140.jar"))
     compileOnly(libs.mythicmobs)
 
     implementation(libs.commandapi)
