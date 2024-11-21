@@ -91,8 +91,6 @@ tasks {
 
         relocate("dev.jorel.commandapi", "uk.firedev.emfpinata.libs.commandapi")
         relocate("org.bstats", "uk.firedev.emfpinata.libs.bstats")
-
-        minimize()
     }
     withType<JavaCompile> {
         options.encoding = "UTF-8"
