@@ -10,13 +10,16 @@ repositories {
     mavenCentral()
     gradlePluginPortal()
     maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://repo.firedev.uk/repository/maven-public/")
+    maven("https://repo.firedev.uk/repository/maven-public/") {
+        metadataSources { artifact() }
+    }
     maven("https://mvn.lumine.io/repository/maven-public/")
 }
 
 dependencies {
     compileOnly(libs.paper.api)
-    compileOnly(files("$projectDir/libs/even-more-fish-1.7.4-140.jar"))
+    compileOnly("com.oheers:EvenMoreFish:-SNAPSHOT")
+    //compileOnly(files("$projectDir/libs/even-more-fish-1.7.4-140.jar"))
     compileOnly(libs.mythicmobs)
 
     implementation(libs.commandapi)
