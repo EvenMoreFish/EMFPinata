@@ -10,7 +10,11 @@ Versions below 1.18.2 will never be supported, as those versions don't have the 
 
 ## Download
 
-Release builds can be downloaded here: https://github.com/FireML-Dev/EMFPinata/releases/latest
+Release builds can be downloaded from the following sources: 
+
+[GitHub Releases](https://github.com/FireML-Dev/EMFPinata/releases/latest)
+
+[Modrinth](https://modrinth.com/plugin/emfpinata)
 
 Snapshot/Dev builds can be downloaded here: https://ci.firedev.uk/job/EMFPinata/
 
