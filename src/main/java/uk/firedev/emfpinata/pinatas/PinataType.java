@@ -1,5 +1,7 @@
 package uk.firedev.emfpinata.pinatas;
 
+import com.oheers.fish.api.reward.Reward;
+import com.oheers.fish.libs.boostedyaml.block.implementation.Section;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -9,60 +11,129 @@ import org.bukkit.entity.Mob;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import uk.firedev.emfpinata.EMFPinata;
 import uk.firedev.emfpinata.ScoreboardHelper;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public interface PinataType {
+public abstract class PinataType {
 
-    String getIdentifier();
+    private final String identifier;
+    private String displayName;
+    private int health;
+    private boolean glowing;
+    private List<String> rewards;
+    private boolean silent;
+    private String glowColor;
+    private final String entityTypeString;
+    private boolean hasAwareness;
 
-    String getDisplayName();
+    public PinataType(@NotNull String identifier, @NotNull String entityTypeString, @NotNull Section section) {
+        this.identifier = identifier;
+        this.entityTypeString = entityTypeString;
+        this.displayName = section.getString("display-name");
+        this.glowing = section.getBoolean("glowing", true);
+        this.health = section.getInt("health", 120);
+        this.silent = section.getBoolean("silent", true);
+        this.glowColor = section.getString("glow-color", "aqua").toUpperCase();
+        this.rewards = new ArrayList<>(section.getStringList("rewards"));
+        this.hasAwareness = section.getBoolean("has-awareness");
+    }
 
-    void setDisplayName(@NotNull String displayName);
+    protected @NotNull String getEntityTypeString() {
+        return entityTypeString;
+    }
 
-    int getHealth();
+    public @NotNull String getIdentifier() {
+        return identifier;
+    }
 
-    void setHealth(int health);
+    public @Nullable String getDisplayName() {
+        return displayName;
+    }
 
-    boolean isGlowing();
+    public void setDisplayName(@Nullable String displayName) {
+        this.displayName = displayName;
+    }
 
-    void setGlowing(boolean glowing);
+    public int getHealth() {
+        return health;
+    }
 
-    boolean isAware();
+    public void setHealth(int health) {
+        this.health = health;
+    }
 
-    void setAware(boolean aware);
+    public boolean isGlowing() {
+        return glowing;
+    }
+
+    public void setGlowing(boolean glowing) {
+        this.glowing = glowing;
+    }
+
+    public boolean isAware() {
+        return hasAwareness;
+    }
+
+    public void setAware(boolean aware) {
+        this.hasAwareness = aware;
+    }
 
     /**
      * Hooks into EvenMoreFish's reward system to manage piñata rewards.
      * @return The list of reward strings.
      */
-    List<String> getRewards();
+    public @NotNull List<Reward> getRewards() {
+        return rewards.stream().map(Reward::new).toList();
+    }
 
-    void setRewards(@NotNull List<String> rewards);
+    public @NotNull List<String> getRewardStrings() {
+        return rewards;
+    }
 
-    void addReward(@NotNull String reward);
+    public void setRewards(@NotNull List<String> rewards) {
+        this.rewards = new ArrayList<>(rewards);
+    }
 
-    void addRewards(@NotNull String... rewards);
+    public void addReward(@NotNull String reward) {
+        this.rewards.add(reward);
+    }
 
-    void addRewards(@NotNull List<String> rewards);
+    public void addRewards(@NotNull String... rewards) {
+        this.rewards.addAll(List.of(rewards));
+    }
 
-    boolean isSilent();
+    public void addRewards(@NotNull List<String> rewards) {
+        this.rewards.addAll(rewards);
+    }
 
-    void setSilent(boolean silent);
+    public boolean isSilent() {
+        return silent;
+    }
 
-    String getGlowColor();
+    public void setSilent(boolean silent) {
+        this.silent = silent;
+    }
 
-    void setGlowColor(@NotNull String glowColor);
+    public String getGlowColor() {
+        return glowColor;
+    }
 
-    default boolean register() {
+    public void setGlowColor(@NotNull String glowColor) {
+        this.glowColor = glowColor;
+    }
+
+    public boolean register() {
         return PinataManager.getInstance().registerPinata(this);
     }
 
-    void spawn(@NotNull Location location);
+    public abstract void spawn(@NotNull Location location);
 
-    default void applyCommonValues(@NotNull Entity entity) {
+    public void applyCommonValues(@NotNull Entity entity) {
         if (getDisplayName() != null) {
             entity.setCustomNameVisible(true);
             entity.customName(EMFPinata.getMiniMessage().deserialize(getDisplayName()));

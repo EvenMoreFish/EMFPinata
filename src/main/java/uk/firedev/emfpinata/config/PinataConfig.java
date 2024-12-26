@@ -35,21 +35,14 @@ public class PinataConfig extends ConfigBase {
             if (pinataSection == null) {
                 return;
             }
-            String displayName = pinataSection.getString("display-name");
             String type = pinataSection.getString("entity-type", "llama");
             PinataType pinataType;
             if (mythicMobsEnabled && type.startsWith("mythicmob:")) {
                 String mythicMobType = type.replaceFirst("mythicmob:", "");
-                pinataType = new MythicMobsPinata(key, mythicMobType, displayName);
+                pinataType = new MythicMobsPinata(key, mythicMobType, pinataSection);
             } else {
-                pinataType = new Pinata(key, type, displayName);
+                pinataType = new Pinata(key, type, pinataSection);
             }
-            pinataType.setGlowing(pinataSection.getBoolean("glowing", true));
-            pinataType.setHealth(pinataSection.getInt("health", 120));
-            pinataType.setSilent(pinataSection.getBoolean("silent", true));
-            pinataType.setGlowColor(pinataSection.getString("glow-color", "aqua").toUpperCase());
-            pinataType.setRewards(pinataSection.getStringList("rewards"));
-            pinataType.setAware(pinataSection.getBoolean("has-awareness"));
             pinataType.register();
         });
     }

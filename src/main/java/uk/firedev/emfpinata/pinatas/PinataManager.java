@@ -1,5 +1,6 @@
 package uk.firedev.emfpinata.pinatas;
 
+import com.oheers.fish.api.reward.Reward;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
@@ -162,7 +163,7 @@ public class PinataManager {
         return entity.getPersistentDataContainer().has(getPinataKey());
     }
 
-    public List<String> getRewards(@NotNull Entity entity) {
+    public List<Reward> getRewards(@NotNull Entity entity) {
         if (!isPinata(entity)) {
             return List.of();
         }
