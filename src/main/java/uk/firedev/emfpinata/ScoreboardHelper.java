@@ -12,20 +12,11 @@ import java.util.Map;
 
 public class ScoreboardHelper {
 
-    private static ScoreboardHelper instance;
-
-    private final Map<NamedTextColor, Team> loadedTeams = new HashMap<>();
+    private static final Map<NamedTextColor, Team> loadedTeams = new HashMap<>();
 
     private ScoreboardHelper() {}
 
-    public static ScoreboardHelper getInstance() {
-        if (instance == null) {
-            instance = new ScoreboardHelper();
-        }
-        return instance;
-    }
-
-    public void addToTeam(@NotNull Entity entity, @NotNull String color) {
+    public static void addToTeam(@NotNull Entity entity, @NotNull String color) {
         color = color.toLowerCase();
         NamedTextColor namedTextColor = NamedTextColor.NAMES.value(color);
         if (namedTextColor == null) {
