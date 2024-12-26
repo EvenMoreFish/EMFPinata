@@ -38,7 +38,6 @@ bukkit {
     apiVersion = "1.18"
     author = "FireML"
     description = project.description.toString()
-    foliaSupported = true
 
     depend = listOf(
         "EvenMoreFish"
