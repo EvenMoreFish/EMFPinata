@@ -12,7 +12,9 @@ import uk.firedev.emfpinata.pinatas.PinataManager;
 public final class EMFPinata extends JavaPlugin {
 
     private static EMFPinata instance;
-    private MiniMessage miniMessage;
+    private static MiniMessage miniMessage;
+
+    private Metrics metrics = null;
 
     @Override
     public void onLoad() {
@@ -28,7 +30,8 @@ public final class EMFPinata extends JavaPlugin {
         CommandAPI.onEnable();
         reload();
         registerCommands();
-        metrics();
+
+        metrics = loadMetrics();
 
         // Load the example config
         new ExampleConfig();
@@ -41,19 +44,19 @@ public final class EMFPinata extends JavaPlugin {
         PinataManager.getInstance().reload();
     }
 
-    public MiniMessage getMiniMessage() {
-        if (miniMessage == null) {
-            miniMessage = MiniMessage.miniMessage();
-        }
-        return miniMessage;
-    }
-
     private void registerCommands() {
         MainCommand.getInstance().register();
     }
 
-    private void metrics() {
-        new Metrics(this, 22866);
+    private Metrics loadMetrics() {
+        return new Metrics(this, 22866);
+    }
+
+    public static MiniMessage getMiniMessage() {
+        if (miniMessage == null) {
+            miniMessage = MiniMessage.miniMessage();
+        }
+        return miniMessage;
     }
 
 }
