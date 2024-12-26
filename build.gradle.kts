@@ -18,7 +18,7 @@ repositories {
 
 dependencies {
     compileOnly(libs.paper.api)
-    compileOnly("com.oheers:EvenMoreFish:-SNAPSHOT")
+    compileOnly(libs.evenmorefish)
     //compileOnly(files("$projectDir/libs/even-more-fish-1.7.4-140.jar"))
     compileOnly(libs.mythicmobs)
 
