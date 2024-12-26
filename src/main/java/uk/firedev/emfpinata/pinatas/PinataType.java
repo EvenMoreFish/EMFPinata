@@ -65,7 +65,7 @@ public interface PinataType {
     default void applyCommonValues(@NotNull Entity entity) {
         if (getDisplayName() != null) {
             entity.setCustomNameVisible(true);
-            entity.customName(EMFPinata.getInstance().getMiniMessage().deserialize(getDisplayName()));
+            entity.customName(EMFPinata.getMiniMessage().deserialize(getDisplayName()));
         }
         entity.setGlowing(isGlowing());
         if (getGlowColor() != null && !getGlowColor().isEmpty()) {

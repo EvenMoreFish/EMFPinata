@@ -30,26 +30,26 @@ public class MessageConfig extends ConfigBase {
 
     public Component getPrefix() {
         @NotNull String prefixString = getConfig().getString("messages.prefix", "<gray>[EMFPinata] </gray>");
-        return EMFPinata.getInstance().getMiniMessage().deserialize(prefixString);
+        return EMFPinata.getMiniMessage().deserialize(prefixString);
     }
 
     // MAIN COMMAND
 
     public Component getReloadedMessage() {
         @NotNull String message = getConfig().getString("messages.main-command.reloaded", "{prefix}<aqua>Successfully reloaded the plugin.");
-        return applyPrefix(EMFPinata.getInstance().getMiniMessage().deserialize(message));
+        return applyPrefix(EMFPinata.getMiniMessage().deserialize(message));
     }
 
     // PINATA COMMAND
 
     public Component getPinataNotValidMessage() {
         @NotNull String message = getConfig().getString("messages.pinata-command.not-valid", "{prefix}<red>That piñata does not exist!");
-        return applyPrefix(EMFPinata.getInstance().getMiniMessage().deserialize(message));
+        return applyPrefix(EMFPinata.getMiniMessage().deserialize(message));
     }
 
     public Component getPinataSpawnedMessage() {
         @NotNull String message = getConfig().getString("messages.pinata-command.spawned", "{prefix}<aqua>Successfully spawned a Piñata.");
-        return applyPrefix(EMFPinata.getInstance().getMiniMessage().deserialize(message));
+        return applyPrefix(EMFPinata.getMiniMessage().deserialize(message));
     }
 
 }
