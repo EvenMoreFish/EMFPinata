@@ -10,31 +10,25 @@ Versions below 1.18.2 will never be supported, as those versions don't have the 
 
 ## Download
 
-Release builds can be downloaded from the following sources: 
+Release Builds are available on [Modrinth](https://modrinth.com/plugin/emfpinata).
 
-[GitHub Releases](https://github.com/FireML-Dev/EMFPinata/releases/latest)
+Snapshot/Dev Builds are available on [Jenkins](https://ci.firedev.uk/job/EMFPinata/).
 
-[Modrinth](https://modrinth.com/plugin/emfpinata)
-
-Snapshot/Dev builds can be downloaded here: https://ci.firedev.uk/job/EMFPinata/
+> [!IMPORTANT]  
+> EMFPiñata depends on [EvenMoreFish](https://modrinth.com/plugin/evenmorefish). The plugin will not load without it.
 
 ## Wiki Pages
 
 Piñata Config: https://github.com/FireML-Dev/EMFPinata/wiki/Pi%C3%B1ata-Config
 
-## Maven
+## Gradle (Kotlin)
 
-```xml
-    <repository>
-        <id>firedev-repo</id>
-        <url>https://repo.firedev.uk/repository/maven-public/</url>
-    </repository>
-```
-```xml
-    <dependency>
-        <groupId>uk.firedev</groupId>
-        <artifactId>EMFPinata</artifactId>
-        <version>1.0.6</version>
-        <scope>provided</scope>
-    </dependency>
+```kotlin
+repositories {
+    maven("https://repo.firedev.uk/repository/maven-public/")
+}
+
+dependencies {
+    compileOnly("uk.firedev:EMFPinata:1.0.6")
+}
 ```
