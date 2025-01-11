@@ -4,8 +4,6 @@ A Piñata addon for the EvenMoreFish plugin.
 
 Requires at least Paper 1.18.2 and Java 17 to work!
 
-Versions below 1.18.2 will never be supported, as those versions don't have the features I need.
-
 [![CodeFactor](https://www.codefactor.io/repository/github/fireml-dev/emfpinata/badge)](https://www.codefactor.io/repository/github/fireml-dev/emfpinata)
 
 ## Download
