@@ -40,7 +40,7 @@ public abstract class PinataType {
         this.silent = section.getBoolean("silent", true);
         this.glowColor = section.getString("glow-color", "aqua").toUpperCase();
         this.rewards = new ArrayList<>(section.getStringList("rewards"));
-        this.hasAwareness = section.getBoolean("has-awareness");
+        this.hasAwareness = section.getBoolean("has-awareness", true);
     }
 
     protected @NotNull String getEntityTypeString() {
