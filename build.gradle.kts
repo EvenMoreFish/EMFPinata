@@ -10,16 +10,13 @@ repositories {
     mavenCentral()
     gradlePluginPortal()
     maven("https://repo.papermc.io/repository/maven-public/")
-    maven("https://repo.firedev.uk/repository/maven-public/") {
-        metadataSources { artifact() }
-    }
     maven("https://mvn.lumine.io/repository/maven-public/")
 }
 
 dependencies {
     compileOnly(libs.paper.api)
-    compileOnly(libs.evenmorefish)
-    //compileOnly(files("$projectDir/libs/even-more-fish-1.7.4-140.jar"))
+    //compileOnly(libs.evenmorefish)
+    compileOnly(files("$projectDir/EvenMoreFish.jar"))
     compileOnly(libs.mythicmobs)
 
     implementation(libs.commandapi)
@@ -51,20 +48,16 @@ bukkit {
 publishing {
     repositories {
         maven {
-            name = "firedevRepo"
+            url = uri("https://repo.codemc.io/repository/FireML/")
 
-            // Repository settings
-            var repoUrlString = "https://repo.firedev.uk/repository/maven-"
-            repoUrlString += if (project.version.toString().endsWith("-SNAPSHOT")) {
-                "snapshots/"
-            } else {
-                "releases/"
-            }
-            url = uri(repoUrlString)
+            val mavenUsername = System.getenv("JENKINS_USERNAME")
+            val mavenPassword = System.getenv("JENKINS_PASSWORD")
 
-            credentials(PasswordCredentials::class)
-            authentication {
-                create<BasicAuthentication>("basic")
+            if (mavenUsername != null && mavenPassword != null) {
+                credentials {
+                    username = mavenUsername
+                    password = mavenPassword
+                }
             }
         }
     }

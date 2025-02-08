@@ -7,7 +7,8 @@ dependencyResolutionManagement {
             library("commandapi", "dev.jorel:commandapi-bukkit-shade:9.7.0")
             library("bstats", "org.bstats:bstats-bukkit:3.1.0")
             library("mythicmobs", "io.lumine:Mythic-Dist:5.7.1")
-            library("evenmorefish", "com.oheers:EvenMoreFish:-SNAPSHOT")
+
+            //library("evenmorefish", "com.oheers:EvenMoreFish:-SNAPSHOT")
 
             plugin("shadow", "com.gradleup.shadow").version("8.3.5")
             plugin("plugin-yml", "net.minecrell.plugin-yml.bukkit").version("0.6.0")

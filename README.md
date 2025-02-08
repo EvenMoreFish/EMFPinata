@@ -10,7 +10,7 @@ Requires at least Paper 1.18.2 and Java 17 to work!
 
 Release Builds are available on [Modrinth](https://modrinth.com/plugin/emfpinata).
 
-Snapshot/Dev Builds are available on [Jenkins](https://ci.firedev.uk/job/EMFPinata/).
+Snapshot/Dev Builds are available on [Jenkins](https://ci.codemc.io/job/FireML/job/EMFPinata/).
 
 > [!IMPORTANT]  
 > EMFPiñata depends on [EvenMoreFish](https://modrinth.com/plugin/evenmorefish). The plugin will not load without it.
@@ -23,7 +23,7 @@ Piñata Config: https://github.com/FireML-Dev/EMFPinata/wiki/Pi%C3%B1ata-Config
 
 ```kotlin
 repositories {
-    maven("https://repo.firedev.uk/repository/maven-public/")
+    maven("https://repo.codemc.io/repository/FireML/")
 }
 
 dependencies {
