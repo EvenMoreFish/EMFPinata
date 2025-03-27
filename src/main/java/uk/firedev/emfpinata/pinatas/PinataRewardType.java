@@ -7,7 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import uk.firedev.emfpinata.EMFPinata;
 
-public class PinataRewardType implements RewardType {
+public class PinataRewardType extends RewardType {
 
     private static PinataRewardType instance;
 
