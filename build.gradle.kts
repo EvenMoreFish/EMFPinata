@@ -6,17 +6,16 @@ plugins {
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
     gradlePluginPortal()
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://mvn.lumine.io/repository/maven-public/")
+    maven("https://repo.codemc.io/repository/EvenMoreFish/")
 }
 
 dependencies {
     compileOnly(libs.paper.api)
-    //compileOnly(libs.evenmorefish)
-    compileOnly(files("$projectDir/EvenMoreFish.jar"))
+    compileOnly(libs.evenmorefish)
     compileOnly(libs.mythicmobs)
 
     implementation(libs.commandapi)
