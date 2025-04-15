@@ -12,10 +12,6 @@ import org.jetbrains.annotations.Nullable;
 import uk.firedev.emfpinata.EMFPinata;
 import uk.firedev.emfpinata.pinatas.PinataType;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class MythicMobsPinata extends PinataType {
 
     public MythicMobsPinata(@NotNull String identifier, @NotNull String entityTypeString, @NotNull Section section) {

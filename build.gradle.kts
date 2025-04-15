@@ -17,8 +17,7 @@ dependencies {
     compileOnly(libs.paper.api)
     compileOnly(libs.evenmorefish)
     compileOnly(libs.mythicmobs)
-
-    implementation(libs.commandapi)
+    
     implementation(libs.bstats)
 }
 
@@ -80,7 +79,6 @@ tasks {
         archiveVersion.set(project.version.toString())
         archiveClassifier.set("")
 
-        relocate("dev.jorel.commandapi", "uk.firedev.emfpinata.libs.commandapi")
         relocate("org.bstats", "uk.firedev.emfpinata.libs.bstats")
     }
     withType<JavaCompile> {

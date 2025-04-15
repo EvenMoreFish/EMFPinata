@@ -1,7 +1,5 @@
 package uk.firedev.emfpinata;
 
-import dev.jorel.commandapi.CommandAPI;
-import dev.jorel.commandapi.CommandAPIBukkitConfig;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,18 +15,8 @@ public final class EMFPinata extends JavaPlugin {
     private Metrics metrics = null;
 
     @Override
-    public void onLoad() {
-        CommandAPI.onLoad(
-                new CommandAPIBukkitConfig(this)
-                        .shouldHookPaperReload(true)
-                        .usePluginNamespace()
-        );
-    }
-
-    @Override
     public void onEnable() {
         instance = this;
-        CommandAPI.onEnable();
         reload();
         registerCommands();
 

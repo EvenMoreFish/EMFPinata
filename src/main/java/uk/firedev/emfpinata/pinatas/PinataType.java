@@ -16,7 +16,6 @@ import uk.firedev.emfpinata.EMFPinata;
 import uk.firedev.emfpinata.ScoreboardHelper;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class PinataType {
