@@ -3,7 +3,7 @@ rootProject.name = "EMFPinata"
 dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
-            library("paper-api", "io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT")
+            library("paper-api", "io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT")
             library("bstats", "org.bstats:bstats-bukkit:3.1.0")
             library("mythicmobs", "io.lumine:Mythic-Dist:5.6.2")
 

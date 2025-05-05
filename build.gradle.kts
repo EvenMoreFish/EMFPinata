@@ -30,7 +30,7 @@ bukkit {
     name = project.name
     version = project.version.toString()
     main = "uk.firedev.emfpinata.EMFPinata"
-    apiVersion = "1.18"
+    apiVersion = "1.20"
     author = "FireML"
     description = project.description.toString()
 
