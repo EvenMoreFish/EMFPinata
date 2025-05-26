@@ -7,7 +7,7 @@ dependencyResolutionManagement {
             library("bstats", "org.bstats:bstats-bukkit:3.1.0")
             library("mythicmobs", "io.lumine:Mythic-Dist:5.6.2")
 
-            library("evenmorefish", "com.oheers.evenmorefish:even-more-fish-plugin:2.0.0-SNAPSHOT")
+            library("evenmorefish", "com.oheers.evenmorefish:even-more-fish-plugin:2.0.0-RC4")
 
             plugin("shadow", "com.gradleup.shadow").version("8.3.5")
             plugin("plugin-yml", "net.minecrell.plugin-yml.bukkit").version("0.6.0")
