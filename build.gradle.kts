@@ -22,7 +22,7 @@ dependencies {
 }
 
 group = "uk.firedev"
-version = "1.0.7"
+version = "1.0.8-SNAPSHOT"
 description = "A Piñata addon for the EvenMoreFish plugin."
 java.sourceCompatibility = JavaVersion.VERSION_17
 
@@ -46,7 +46,7 @@ bukkit {
 publishing {
     repositories {
         maven {
-            url = uri("https://repo.codemc.io/repository/FireML/")
+            url = uri("https://repo.codemc.io/repository/EvenMoreFish/")
 
             val mavenUsername = System.getenv("JENKINS_USERNAME")
             val mavenPassword = System.getenv("JENKINS_PASSWORD")
