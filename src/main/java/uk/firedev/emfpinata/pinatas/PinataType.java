@@ -14,14 +14,18 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import uk.firedev.emfpinata.EMFPinata;
 import uk.firedev.emfpinata.ScoreboardHelper;
+import uk.firedev.messagelib.message.ComponentMessage;
+import uk.firedev.messagelib.message.ComponentSingleMessage;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static uk.firedev.messagelib.message.ComponentMessage.componentMessage;
+
 public abstract class PinataType {
 
     private final String identifier;
-    private String displayName;
+    private ComponentSingleMessage displayName;
     private int health;
     private boolean glowing;
     private List<String> rewards;
@@ -33,7 +37,7 @@ public abstract class PinataType {
     public PinataType(@NotNull String identifier, @NotNull String entityTypeString, @NotNull Section section) {
         this.identifier = identifier;
         this.entityTypeString = entityTypeString;
-        this.displayName = section.getString("display-name");
+        this.displayName = componentMessage(section.getString("display-name", ""));
         this.glowing = section.getBoolean("glowing", true);
         this.health = section.getInt("health", 120);
         this.silent = section.getBoolean("silent", true);
@@ -50,11 +54,11 @@ public abstract class PinataType {
         return identifier;
     }
 
-    public @Nullable String getDisplayName() {
+    public @NotNull ComponentSingleMessage getDisplayName() {
         return displayName;
     }
 
-    public void setDisplayName(@Nullable String displayName) {
+    public void setDisplayName(@Nullable ComponentSingleMessage displayName) {
         this.displayName = displayName;
     }
 
@@ -133,9 +137,9 @@ public abstract class PinataType {
     public abstract void spawn(@NotNull Location location);
 
     public void applyCommonValues(@NotNull Entity entity) {
-        if (getDisplayName() != null) {
+        if (!getDisplayName().isEmpty()) {
             entity.setCustomNameVisible(true);
-            entity.customName(EMFPinata.getMiniMessage().deserialize(getDisplayName()));
+            entity.customName(getDisplayName().get());
         }
         entity.setGlowing(isGlowing());
         if (getGlowColor() != null && !getGlowColor().isEmpty()) {

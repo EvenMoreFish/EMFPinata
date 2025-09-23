@@ -5,6 +5,7 @@ import dev.jorel.commandapi.CommandAPIBukkitConfig;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
+import uk.firedev.emfpinata.command.MainCommand;
 import uk.firedev.emfpinata.config.ExampleConfig;
 import uk.firedev.emfpinata.config.MessageConfig;
 import uk.firedev.emfpinata.pinatas.PinataManager;
@@ -12,7 +13,6 @@ import uk.firedev.emfpinata.pinatas.PinataManager;
 public final class EMFPinata extends JavaPlugin {
 
     private static EMFPinata instance;
-    private static MiniMessage miniMessage;
 
     private Metrics metrics = null;
 
@@ -46,18 +46,11 @@ public final class EMFPinata extends JavaPlugin {
     }
 
     private void registerCommands() {
-        MainCommand.getInstance().register();
+        MainCommand.getCommand().register(this);
     }
 
     private Metrics loadMetrics() {
         return new Metrics(this, 22866);
-    }
-
-    public static MiniMessage getMiniMessage() {
-        if (miniMessage == null) {
-            miniMessage = MiniMessage.miniMessage();
-        }
-        return miniMessage;
     }
 
 }
