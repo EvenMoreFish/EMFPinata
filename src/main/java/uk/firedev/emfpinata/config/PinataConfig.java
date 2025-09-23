@@ -1,7 +1,6 @@
 package uk.firedev.emfpinata.config;
 
-import com.oheers.fish.config.ConfigBase;
-import com.oheers.fish.libs.boostedyaml.block.implementation.Section;
+import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.Bukkit;
 import uk.firedev.emfpinata.EMFPinata;
 import uk.firedev.emfpinata.pinatas.PinataManager;

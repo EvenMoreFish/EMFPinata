@@ -1,7 +1,7 @@
 package uk.firedev.emfpinata.pinatas;
 
 import com.oheers.fish.api.reward.Reward;
-import com.oheers.fish.libs.boostedyaml.block.implementation.Section;
+import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;

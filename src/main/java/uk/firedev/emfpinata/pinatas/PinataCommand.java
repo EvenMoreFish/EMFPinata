@@ -1,10 +1,10 @@
 package uk.firedev.emfpinata.pinatas;
 
-import com.oheers.fish.libs.commandapi.CommandAPICommand;
-import com.oheers.fish.libs.commandapi.CommandPermission;
-import com.oheers.fish.libs.commandapi.arguments.Argument;
-import com.oheers.fish.libs.commandapi.arguments.ArgumentSuggestions;
-import com.oheers.fish.libs.commandapi.arguments.StringArgument;
+import dev.jorel.commandapi.CommandAPICommand;
+import dev.jorel.commandapi.CommandPermission;
+import dev.jorel.commandapi.arguments.Argument;
+import dev.jorel.commandapi.arguments.ArgumentSuggestions;
+import dev.jorel.commandapi.arguments.StringArgument;
 import uk.firedev.emfpinata.config.MessageConfig;
 
 import java.util.Objects;

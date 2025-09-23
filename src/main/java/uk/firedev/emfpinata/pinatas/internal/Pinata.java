@@ -1,6 +1,6 @@
 package uk.firedev.emfpinata.pinatas.internal;
 
-import com.oheers.fish.libs.boostedyaml.block.implementation.Section;
+import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;

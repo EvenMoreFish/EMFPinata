@@ -1,7 +1,7 @@
 package uk.firedev.emfpinata;
 
-import com.oheers.fish.libs.commandapi.CommandAPICommand;
-import com.oheers.fish.libs.commandapi.CommandPermission;
+import dev.jorel.commandapi.CommandAPICommand;
+import dev.jorel.commandapi.CommandPermission;
 import uk.firedev.emfpinata.config.MessageConfig;
 import uk.firedev.emfpinata.pinatas.PinataCommand;
 
