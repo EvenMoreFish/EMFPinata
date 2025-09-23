@@ -1,17 +1,24 @@
 package uk.firedev.emfpinata.config;
 
-import com.oheers.fish.config.ConfigBase;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
 import org.jetbrains.annotations.NotNull;
 import uk.firedev.emfpinata.EMFPinata;
+import uk.firedev.messagelib.config.PaperConfigLoader;
+import uk.firedev.messagelib.message.ComponentMessage;
+import uk.firedev.messagelib.message.ComponentSingleMessage;
+
+import static uk.firedev.messagelib.message.ComponentMessage.componentMessage;
 
 public class MessageConfig extends ConfigBase {
 
     private static MessageConfig instance;
 
+    private EMFPinataConfigLoader loader;
+
     private MessageConfig() {
         super("messages.yml", "messages.yml", EMFPinata.getInstance(), true);
+        loader = new EMFPinataConfigLoader(getConfig());
     }
 
     public static MessageConfig getInstance() {
@@ -21,35 +28,30 @@ public class MessageConfig extends ConfigBase {
         return instance;
     }
 
-    private @NotNull Component applyPrefix(@NotNull Component component) {
-        TextReplacementConfig trc = TextReplacementConfig.builder().matchLiteral("{prefix}").replacement(getPrefix()).build();
-        return component.replaceText(trc);
+    private @NotNull ComponentMessage applyPrefix(@NotNull ComponentMessage component) {
+        return component.replace("{prefix}", getPrefix());
     }
 
     // GENERAL
 
-    public Component getPrefix() {
-        @NotNull String prefixString = getConfig().getString("messages.prefix", "<gray>[EMFPinata] </gray>");
-        return EMFPinata.getMiniMessage().deserialize(prefixString);
+    public ComponentSingleMessage getPrefix() {
+        return componentMessage(loader, "messages.prefix", "<gray>[EMFPinata] </gray>").toSingleMessage();
     }
 
     // MAIN COMMAND
 
-    public Component getReloadedMessage() {
-        @NotNull String message = getConfig().getString("messages.main-command.reloaded", "{prefix}<aqua>Successfully reloaded the plugin.");
-        return applyPrefix(EMFPinata.getMiniMessage().deserialize(message));
+    public ComponentMessage getReloadedMessage() {
+        return componentMessage(loader, "messages.main-command.reloaded", "{prefix}<aqua>Successfully reloaded the plugin.");
     }
 
     // PINATA COMMAND
 
-    public Component getPinataNotValidMessage() {
-        @NotNull String message = getConfig().getString("messages.pinata-command.not-valid", "{prefix}<red>That piñata does not exist!");
-        return applyPrefix(EMFPinata.getMiniMessage().deserialize(message));
+    public ComponentMessage getPinataNotValidMessage() {
+        return componentMessage(loader, "messages.pinata-command.not-valid", "{prefix}<red>That piñata does not exist!");
     }
 
-    public Component getPinataSpawnedMessage() {
-        @NotNull String message = getConfig().getString("messages.pinata-command.spawned", "{prefix}<aqua>Successfully spawned a Piñata.");
-        return applyPrefix(EMFPinata.getMiniMessage().deserialize(message));
+    public ComponentMessage getPinataSpawnedMessage() {
+        return componentMessage(loader, "messages.pinata-command.spawned", "{prefix}<aqua>Successfully spawned a Piñata.");
     }
 
 }

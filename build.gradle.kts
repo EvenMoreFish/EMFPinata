@@ -11,14 +11,19 @@ repositories {
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://mvn.lumine.io/repository/maven-public/")
     maven("https://repo.codemc.io/repository/EvenMoreFish/")
+    maven("https://repo.codemc.io/repository/FireML/")
 }
 
 dependencies {
     compileOnly(libs.paper.api)
     compileOnly(libs.evenmorefish)
     compileOnly(libs.mythicmobs)
+
+    library(libs.boostedyaml)
     
     implementation(libs.bstats)
+    implementation(libs.commandapi)
+    implementation(libs.messagelib)
 }
 
 group = "uk.firedev"
@@ -80,6 +85,8 @@ tasks {
         archiveClassifier.set("")
 
         relocate("org.bstats", "uk.firedev.emfpinata.libs.bstats")
+        relocate("dev.jorel.commandapi", "uk.firedev.emfpinata.libs.commandapi")
+        relocate("uk.firedev.messagelib", "uk.firedev.emfpinata.libs.messagelib")
     }
     withType<JavaCompile> {
         options.encoding = "UTF-8"

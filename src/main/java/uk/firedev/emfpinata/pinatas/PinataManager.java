@@ -33,7 +33,6 @@ public class PinataManager {
     }
 
     private void load() {
-        PinataCommand.getInstance().register();
         Bukkit.getPluginManager().registerEvents(new PinataListener(), EMFPinata.getInstance());
         loaded = true;
     }

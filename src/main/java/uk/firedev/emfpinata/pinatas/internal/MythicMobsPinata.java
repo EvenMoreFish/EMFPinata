@@ -1,6 +1,6 @@
 package uk.firedev.emfpinata.pinatas.internal;
 
-import com.oheers.fish.libs.boostedyaml.block.implementation.Section;
+import dev.dejvokep.boostedyaml.block.implementation.Section;
 import io.lumine.mythic.api.mobs.MythicMob;
 import io.lumine.mythic.bukkit.BukkitAdapter;
 import io.lumine.mythic.bukkit.MythicBukkit;
