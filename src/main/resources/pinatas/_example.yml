@@ -14,8 +14,9 @@ disabled: false
 entity-type: llama
 
 # Allows you to give the Piñata a custom name.
+# Supports the {player} variable and PlaceholderAPI.
 # This will be shown above its head as if a name tag was used.
-display-name: "<aqua><bold>Example Piñata"
+display-name: "<aqua><bold>{player}'s Piñata"
 
 # How much health should the Piñata have?
 health: 120

@@ -2,11 +2,9 @@ package uk.firedev.emfpinata;
 
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 import uk.firedev.emfpinata.command.MainCommand;
-import uk.firedev.emfpinata.config.ExampleConfig;
 import uk.firedev.emfpinata.config.MessageConfig;
 import uk.firedev.emfpinata.pinata.PinataManager;
 
