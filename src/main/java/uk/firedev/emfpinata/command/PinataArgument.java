@@ -3,27 +3,23 @@ package uk.firedev.emfpinata.command;
 import dev.jorel.commandapi.arguments.Argument;
 import dev.jorel.commandapi.arguments.CustomArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import uk.firedev.emfpinata.pinatas.PinataManager;
-import uk.firedev.emfpinata.pinatas.PinataType;
-
-import java.util.concurrent.CompletableFuture;
+import uk.firedev.emfpinata.pinata.Pinata;
+import uk.firedev.emfpinata.pinata.PinataManager;
 
 public class PinataArgument {
 
-    public static Argument<PinataType> get() {
+    public static Argument<Pinata> get() {
         return new CustomArgument<>(new StringArgument("pinata"), info -> {
-            PinataType pinataType = PinataManager.getInstance().getPinataFromIdentifier(info.input());
-            if (pinataType == null) {
+            Pinata pinata = PinataManager.getInstance().getPinata(info.input());
+            if (pinata == null) {
                 throw CustomArgument.CustomArgumentException.fromMessageBuilder(
-                    new CustomArgument.MessageBuilder("This Piñata type does not exist: ").appendArgInput()
+                    new CustomArgument.MessageBuilder("This Piñata does not exist: ").appendArgInput()
                 );
             }
-            return pinataType;
+            return pinata;
         }).includeSuggestions(
             ArgumentBuilder.getAsyncSuggestions(info ->
-                PinataManager.getInstance().getPinataList().stream().map(PinataType::getIdentifier).toArray(String[]::new)
+                PinataManager.getInstance().getPinataMap().values().stream().map(Pinata::getId).toArray(String[]::new)
             )
         );
     }
