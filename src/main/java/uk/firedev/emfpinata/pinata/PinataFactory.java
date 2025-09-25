@@ -138,10 +138,14 @@ public class PinataFactory extends ConfigBase {
 
     // MythicMobs
     public @Nullable MythicEntityLoader getMythicEntityLoader(@NotNull String rawValue) {
-        if (!rawValue.startsWith("mythic:")) {
+        String mobName;
+        if (rawValue.startsWith("mythic:")) {
+            mobName = rawValue.substring("mythic:".length());
+        } else if (rawValue.startsWith("mythicmob:")) {
+            mobName = rawValue.substring("mythicmob:".length());
+        } else {
             return null;
         }
-        String mobName = rawValue.substring("mythic:".length());
         MythicMob mob = MythicBukkit.inst().getMobManager().getMythicMob(mobName).orElse(null);
         if (mob == null) {
             return null;
