@@ -16,6 +16,10 @@ Snapshot/Dev Builds are available on [Jenkins](https://ci.codemc.io/job/EvenMore
 > [!IMPORTANT]  
 > EMFPiñata depends on [EvenMoreFish](https://modrinth.com/plugin/evenmorefish). The plugin will not load without it.
 
+## Wiki
+
+The wiki can be found here: https://github.com/EvenMoreFish/EMFPinata/wiki
+
 ## Gradle (Kotlin)
 
 ```kotlin
