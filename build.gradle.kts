@@ -27,7 +27,7 @@ dependencies {
 }
 
 group = "uk.firedev"
-version = "1.0.8-SNAPSHOT"
+version = properties["project-version"] as String
 description = "A Piñata addon for the EvenMoreFish plugin."
 java.sourceCompatibility = JavaVersion.VERSION_17
 
