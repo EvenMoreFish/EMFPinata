@@ -32,7 +32,6 @@ public class MainCommand {
 
     private static Argument<String> getPinata() {
         return new LiteralArgument("pinata")
-            .withPermission("emfpinata.command.pinata")
             .then(
                 PinataArgument.get().executesPlayer(
                     info -> {
