@@ -1,0 +1,12 @@
+id: default
+disabled: false
+entity-type: llama
+display-name: "<aqua><bold>Default Piñata"
+health: 120
+glowing: true
+glow-color: AQUA
+silent: true
+has-awareness: true
+rewards:
+  - "MESSAGE:<gold>You killed the piñata!"
+  - "ITEM:DIAMOND,5"

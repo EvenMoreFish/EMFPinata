@@ -2,12 +2,15 @@ package uk.firedev.emfpinata.pinata;
 
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.Location;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import uk.firedev.emfpinata.Utils;
 import uk.firedev.emfpinata.api.EntityLoader;
+import uk.firedev.emfpinata.config.ConfigBase;
 import uk.firedev.emfpinata.config.ConfigUtils;
 import uk.firedev.emfpinata.pinata.config.AwareEntityConfig;
 import uk.firedev.emfpinata.pinata.config.DisplayNameEntityConfig;
@@ -20,12 +23,14 @@ import uk.firedev.messagelib.replacer.Replacer;
 
 import java.util.function.Consumer;
 
-public class PinataFactory {
+public class PinataFactory extends ConfigBase {
+
+    private static final NamespacedKey PINATA_KEY = new NamespacedKey("emfpinata", "pinata");
 
     private final @NotNull Section config;
-    private boolean rawEntity = false;
     private Consumer<Entity> finalChanges = null;
     private final @NotNull EntityLoader entityLoader;
+    private final @NotNull String pinataId;
 
     private final AwareEntityConfig awareness;
     private final DisplayNameEntityConfig displayName;
@@ -34,12 +39,9 @@ public class PinataFactory {
     private final HealthEntityConfig health;
     private final SilentEntityConfig silent;
 
-    private PinataFactory(@NotNull Section initialSection, @Nullable String configLocation) {
-        if (configLocation == null) {
-            this.config = initialSection;
-        } else {
-            this.config = ConfigUtils.getOrCreateSection(initialSection, configLocation);
-        }
+    protected PinataFactory(@NotNull Section section, @NotNull String pinataId) {
+        this.config = section;
+        this.pinataId = pinataId;
 
         this.awareness = new AwareEntityConfig(this.config);
         this.displayName = new DisplayNameEntityConfig(this.config);
@@ -51,14 +53,6 @@ public class PinataFactory {
         this.entityLoader = fetchEntityLoader();
     }
 
-    public static PinataFactory pinataFactory(@NotNull Section configuration) {
-        return new PinataFactory(configuration, null);
-    }
-
-    public static PinataFactory pinataFactory(@NotNull Section configuration, @Nullable String configLocation) {
-        return new PinataFactory(configuration, configLocation);
-    }
-
     public void spawnEntity(@NotNull Location location) {
         spawnEntity(location, null);
     }
@@ -66,18 +60,21 @@ public class PinataFactory {
     public void spawnEntity(@NotNull Location location, @Nullable Replacer replacements) {
         Entity entity = entityLoader.spawn(location);
 
-        if (!rawEntity) {
-            awareness.apply(entity, replacements);
-            displayName.apply(entity, replacements);
-            glowColor.apply(entity, replacements);
-            glowing.apply(entity, replacements);
-            health.apply(entity, replacements);
-            silent.apply(entity, replacements);
+        // Step 1: Apply configs
+        awareness.apply(entity, replacements);
+        displayName.apply(entity, replacements);
+        glowColor.apply(entity, replacements);
+        glowing.apply(entity, replacements);
+        health.apply(entity, replacements);
+        silent.apply(entity, replacements);
 
-            if (finalChanges != null) {
-                finalChanges.accept(entity);
-            }
+        // Step 2: Apply any final changes provided by external plugins
+        if (finalChanges != null) {
+            finalChanges.accept(entity);
         }
+
+        // Step 3: Set the piñata ID in the entity's persistent data container
+        entity.getPersistentDataContainer().set(PINATA_KEY, PersistentDataType.STRING, pinataId);
     }
 
     public @NotNull AwareEntityConfig getAwareness() {
@@ -102,14 +99,6 @@ public class PinataFactory {
 
     public @NotNull SilentEntityConfig getSilent() {
         return silent;
-    }
-
-    public boolean isRawEntity() {
-        return rawEntity;
-    }
-
-    public void setRawEntity(boolean rawEntity) {
-        this.rawEntity = rawEntity;
     }
 
     public void setFinalChanges(@Nullable Consumer<Entity> finalChanges) {

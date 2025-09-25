@@ -1,9 +1,11 @@
-package uk.firedev.emfpinata.pinatas;
+package uk.firedev.emfpinata.pinata;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import uk.firedev.emfpinata.pinatas.PinataManager;
+import uk.firedev.emfpinata.pinatas.PinataType;
 
 public class PinataListener implements Listener {
 
