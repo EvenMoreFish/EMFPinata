@@ -40,6 +40,12 @@ public final class EMFPinata extends JavaPlugin {
         new ExampleConfig();
     }
 
+    @Override
+    public void onDisable() {
+        PinataManager.getInstance().unload();
+        CommandAPI.onDisable();
+    }
+
     public static EMFPinata getInstance() { return instance; }
 
     public void reload() {
