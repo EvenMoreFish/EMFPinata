@@ -1,6 +1,8 @@
 package uk.firedev.emfpinata.pinata;
 
 import dev.dejvokep.boostedyaml.block.implementation.Section;
+import io.lumine.mythic.api.mobs.MythicMob;
+import io.lumine.mythic.bukkit.MythicBukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -17,6 +19,7 @@ import uk.firedev.emfpinata.pinata.config.GlowColorEntityConfig;
 import uk.firedev.emfpinata.pinata.config.GlowingEntityConfig;
 import uk.firedev.emfpinata.pinata.config.HealthEntityConfig;
 import uk.firedev.emfpinata.pinata.config.SilentEntityConfig;
+import uk.firedev.emfpinata.pinata.loader.MythicEntityLoader;
 import uk.firedev.emfpinata.pinata.loader.VanillaEntityLoader;
 import uk.firedev.messagelib.replacer.Replacer;
 
@@ -103,11 +106,20 @@ public class PinataFactory extends ConfigBase {
     }
 
     private EntityLoader fetchEntityLoader() {
-        EntityLoader vanilla = getVanillaEntityLoader();
+        String rawValue = config.getString("entity-type");
+        if (rawValue == null || rawValue.isEmpty()) {
+            return new VanillaEntityLoader(EntityType.LLAMA);
+        }
+
+        VanillaEntityLoader vanilla = getVanillaEntityLoader(rawValue);
         if (vanilla != null) {
             return vanilla;
         }
-        // Add other entity loaders here as needed
+
+        MythicEntityLoader mythic = getMythicEntityLoader(rawValue);
+        if (mythic != null) {
+            return mythic;
+        }
 
         // Default to LLAMA if no loader is found
         return new VanillaEntityLoader(EntityType.LLAMA);
@@ -116,16 +128,25 @@ public class PinataFactory extends ConfigBase {
     // Entity Loader Methods
 
     // Vanilla
-    public @Nullable EntityLoader getVanillaEntityLoader() {
-        String rawValue = config.getString("entity-type");
-        if (rawValue == null || rawValue.isEmpty()) {
-            return null;
-        }
+    public @Nullable VanillaEntityLoader getVanillaEntityLoader(@NotNull String rawValue) {
         EntityType entityType = Utils.getEnumValue(EntityType.class, rawValue);
         if (entityType == null) {
             return null;
         }
         return new VanillaEntityLoader(entityType);
+    }
+
+    // MythicMobs
+    public @Nullable MythicEntityLoader getMythicEntityLoader(@NotNull String rawValue) {
+        if (!rawValue.startsWith("mythic:")) {
+            return null;
+        }
+        String mobName = rawValue.substring("mythic:".length());
+        MythicMob mob = MythicBukkit.inst().getMobManager().getMythicMob(mobName).orElse(null);
+        if (mob == null) {
+            return null;
+        }
+        return new MythicEntityLoader(mob);
     }
 
 }
