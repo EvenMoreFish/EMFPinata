@@ -26,7 +26,7 @@ public class PinataListener implements Listener {
         if (rewards == null || rewards.isEmpty()) {
             return;
         }
-        rewards.forEach(reward -> reward.rewardPlayer(player, null));
+        rewards.forEach(reward -> reward.rewardPlayer(player, event.getEntity().getLocation()));
     }
 
 }
