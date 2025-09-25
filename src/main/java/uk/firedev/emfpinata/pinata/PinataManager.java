@@ -34,11 +34,13 @@ public class PinataManager {
     public void load() {
         loadPinatas();
         logLoadedItems();
+        new PinataRewardType().register();
     }
 
     public void reload() {
-        unload();
-        load();
+        pinataMap.clear();
+        loadPinatas();
+        logLoadedItems();
     }
 
     public void unload() {
