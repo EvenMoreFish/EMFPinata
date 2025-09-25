@@ -4,6 +4,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.jetbrains.annotations.NotNull;
 import uk.firedev.emfpinata.EMFPinata;
 import uk.firedev.emfpinata.config.ConfigBase;
+import uk.firedev.emfpinata.pinata.config.RewardsEntityConfig;
 
 import java.io.File;
 import java.util.Objects;
@@ -14,11 +15,13 @@ public class Pinata extends ConfigBase {
     private static final Logger logger = EMFPinata.getInstance().getLogger();
 
     private final PinataFactory factory;
+    private final RewardsEntityConfig rewards;
 
     public Pinata(@NotNull File file) throws InvalidConfigurationException {
         super(file, EMFPinata.getInstance(), false);
         performRequiredConfigChecks();
-        factory = new PinataFactory(getConfig(), getId());
+        this.factory = new PinataFactory(getConfig(), getId());
+        this.rewards = new RewardsEntityConfig(getConfig());
     }
 
     // Current required config: id
@@ -41,6 +44,10 @@ public class Pinata extends ConfigBase {
 
     public @NotNull PinataFactory getFactory() {
         return factory;
+    }
+
+    public @NotNull RewardsEntityConfig getRewards() {
+        return rewards;
     }
 
 }

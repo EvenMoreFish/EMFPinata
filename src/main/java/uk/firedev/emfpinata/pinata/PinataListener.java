@@ -1,17 +1,18 @@
 package uk.firedev.emfpinata.pinata;
 
+import com.oheers.fish.api.reward.Reward;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import uk.firedev.emfpinata.pinatas.PinataManager;
-import uk.firedev.emfpinata.pinatas.PinataType;
+
+import java.util.List;
 
 public class PinataListener implements Listener {
 
     @EventHandler
     public void onKill(EntityDeathEvent event) {
-        PinataType pinata = PinataManager.getInstance().getPinataFromEntity(event.getEntity());
+        Pinata pinata = PinataManager.getInstance().getPinata(event.getEntity());
         if (pinata == null) {
             return;
         }
@@ -21,7 +22,11 @@ public class PinataListener implements Listener {
         if (player == null) {
             return;
         }
-        pinata.getRewards().forEach(reward -> reward.rewardPlayer(player, null));
+        List<Reward> rewards = pinata.getRewards().getActualValue();
+        if (rewards == null || rewards.isEmpty()) {
+            return;
+        }
+        rewards.forEach(reward -> reward.rewardPlayer(player, null));
     }
 
 }
