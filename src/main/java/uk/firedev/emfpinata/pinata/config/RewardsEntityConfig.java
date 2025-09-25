@@ -6,6 +6,7 @@ import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import uk.firedev.emfpinata.api.EntityConfig;
+import uk.firedev.emfpinata.pinata.PinataRewardType;
 import uk.firedev.messagelib.replacer.Replacer;
 
 import java.util.List;
@@ -23,7 +24,11 @@ public class RewardsEntityConfig extends EntityConfig<List<Reward>> {
         if (strings.isEmpty()) {
             return List.of();
         }
-        return strings.stream().map(Reward::new).toList();
+        return strings.stream()
+            .map(Reward::new)
+            // Filter out Piñata rewards to avoid infinite loops.
+            .filter(reward -> !(reward.getRewardType() instanceof PinataRewardType))
+            .toList();
     }
 
     @Override

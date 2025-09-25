@@ -35,5 +35,6 @@ silent: true
 has-awareness: true
 
 # Configure your Piñata rewards. This uses EvenMoreFish's reward system.
+# The only reward that will not work here is the PINATA reward to avoid infinite loops.
 rewards:
   - "ITEM:STONE,10"
