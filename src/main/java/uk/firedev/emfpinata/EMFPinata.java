@@ -35,9 +35,6 @@ public final class EMFPinata extends JavaPlugin {
         registerCommands();
 
         metrics = loadMetrics();
-
-        // Load the example config
-        new ExampleConfig();
     }
 
     @Override
