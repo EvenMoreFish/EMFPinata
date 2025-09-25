@@ -35,6 +35,12 @@ public final class EMFPinata extends JavaPlugin {
         registerCommands();
 
         metrics = loadMetrics();
+
+        new UpdateChecker(this).checkUpdate().thenAccept(success -> {
+            if (success) {
+                getLogger().info("A new update is available! Download it from https://modrinth.com/plugin/emfpinata");
+            }
+        });
     }
 
     @Override
