@@ -6,6 +6,7 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 import uk.firedev.emfpinata.command.MainCommand;
 import uk.firedev.emfpinata.config.MessageConfig;
+import uk.firedev.emfpinata.pinata.PinataListener;
 import uk.firedev.emfpinata.pinata.PinataManager;
 
 public final class EMFPinata extends JavaPlugin {
@@ -29,6 +30,7 @@ public final class EMFPinata extends JavaPlugin {
 
         MessageConfig.getInstance().reload();
         PinataManager.getInstance().load();
+        getServer().getPluginManager().registerEvents(new PinataListener(), this);
 
         registerCommands();
 
