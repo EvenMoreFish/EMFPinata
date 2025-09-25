@@ -2,16 +2,15 @@ package uk.firedev.emfpinata.pinata;
 
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.Location;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import uk.firedev.emfpinata.Keys;
 import uk.firedev.emfpinata.Utils;
 import uk.firedev.emfpinata.api.EntityLoader;
 import uk.firedev.emfpinata.config.ConfigBase;
-import uk.firedev.emfpinata.config.ConfigUtils;
 import uk.firedev.emfpinata.pinata.config.AwareEntityConfig;
 import uk.firedev.emfpinata.pinata.config.DisplayNameEntityConfig;
 import uk.firedev.emfpinata.pinata.config.GlowColorEntityConfig;
@@ -24,8 +23,6 @@ import uk.firedev.messagelib.replacer.Replacer;
 import java.util.function.Consumer;
 
 public class PinataFactory extends ConfigBase {
-
-    private static final NamespacedKey PINATA_KEY = new NamespacedKey("emfpinata", "pinata");
 
     private final @NotNull Section config;
     private Consumer<Entity> finalChanges = null;
@@ -74,7 +71,7 @@ public class PinataFactory extends ConfigBase {
         }
 
         // Step 3: Set the piñata ID in the entity's persistent data container
-        entity.getPersistentDataContainer().set(PINATA_KEY, PersistentDataType.STRING, pinataId);
+        entity.getPersistentDataContainer().set(Keys.PINATA_KEY, PersistentDataType.STRING, pinataId);
     }
 
     public @NotNull AwareEntityConfig getAwareness() {

@@ -8,7 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import uk.firedev.emfpinata.command.MainCommand;
 import uk.firedev.emfpinata.config.ExampleConfig;
 import uk.firedev.emfpinata.config.MessageConfig;
-import uk.firedev.emfpinata.pinatas.PinataManager;
+import uk.firedev.emfpinata.pinata.PinataManager;
 
 public final class EMFPinata extends JavaPlugin {
 
@@ -29,7 +29,9 @@ public final class EMFPinata extends JavaPlugin {
         instance = this;
         CommandAPI.onEnable();
 
-        reload();
+        MessageConfig.getInstance().reload();
+        PinataManager.getInstance().load();
+
         registerCommands();
 
         metrics = loadMetrics();

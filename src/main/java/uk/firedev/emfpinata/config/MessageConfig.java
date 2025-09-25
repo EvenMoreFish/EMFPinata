@@ -1,10 +1,7 @@
 package uk.firedev.emfpinata.config;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.TextReplacementConfig;
 import org.jetbrains.annotations.NotNull;
 import uk.firedev.emfpinata.EMFPinata;
-import uk.firedev.messagelib.config.PaperConfigLoader;
 import uk.firedev.messagelib.message.ComponentMessage;
 import uk.firedev.messagelib.message.ComponentSingleMessage;
 
@@ -35,23 +32,23 @@ public class MessageConfig extends ConfigBase {
     // GENERAL
 
     public ComponentSingleMessage getPrefix() {
-        return componentMessage(loader, "messages.prefix", "<gray>[EMFPinata] </gray>").toSingleMessage();
+        return componentMessage(loader, "prefix", "<gray>[EMFPinata] </gray>").toSingleMessage();
     }
 
     // MAIN COMMAND
 
     public ComponentMessage getReloadedMessage() {
-        return componentMessage(loader, "messages.main-command.reloaded", "{prefix}<aqua>Successfully reloaded the plugin.");
+        return componentMessage(loader, "main-command.reloaded", "{prefix}<aqua>Successfully reloaded the plugin.");
     }
 
     // PINATA COMMAND
 
     public ComponentMessage getPinataNotValidMessage() {
-        return componentMessage(loader, "messages.pinata-command.not-valid", "{prefix}<red>That piñata does not exist!");
+        return componentMessage(loader, "pinata-command.not-valid", "{prefix}<red>That piñata does not exist!");
     }
 
     public ComponentMessage getPinataSpawnedMessage() {
-        return componentMessage(loader, "messages.pinata-command.spawned", "{prefix}<aqua>Successfully spawned a Piñata.");
+        return componentMessage(loader, "pinata-command.spawned", "{prefix}<aqua>Successfully spawned a Piñata.");
     }
 
 }

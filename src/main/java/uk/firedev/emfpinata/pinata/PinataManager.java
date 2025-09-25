@@ -2,9 +2,12 @@ package uk.firedev.emfpinata.pinata;
 
 import com.oheers.fish.api.FileUtil;
 import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.entity.Entity;
+import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import uk.firedev.emfpinata.EMFPinata;
+import uk.firedev.emfpinata.Keys;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,7 +24,8 @@ public class PinataManager {
     private final Random random = new Random();
     private final Map<String, Pinata> pinataMap = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 
-    private PinataManager() {}
+    private PinataManager() {
+    }
 
     public static PinataManager getInstance() {
         return instance;
@@ -41,8 +45,20 @@ public class PinataManager {
         pinataMap.clear();
     }
 
+    public @NotNull Map<String, Pinata> getPinataMap() {
+        return Map.copyOf(pinataMap);
+    }
+
     public @Nullable Pinata getPinata(@NotNull String name) {
         return pinataMap.get(name);
+    }
+
+    public @Nullable Pinata getPinata(@NotNull Entity entity) {
+        String id = entity.getPersistentDataContainer().get(Keys.PINATA_KEY, PersistentDataType.STRING);
+        if (id == null) {
+            return null;
+        }
+        return getPinata(id);
     }
 
     public @Nullable Pinata getRandomPinata() {

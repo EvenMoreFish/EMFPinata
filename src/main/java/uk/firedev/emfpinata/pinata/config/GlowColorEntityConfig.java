@@ -1,14 +1,13 @@
 package uk.firedev.emfpinata.pinata.config;
 
-import com.oheers.fish.utils.ScoreboardHelper;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import uk.firedev.emfpinata.ScoreboardHelper;
 import uk.firedev.emfpinata.api.EntityConfig;
 import uk.firedev.messagelib.replacer.Replacer;
 
-import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class GlowColorEntityConfig extends EntityConfig<String> {
