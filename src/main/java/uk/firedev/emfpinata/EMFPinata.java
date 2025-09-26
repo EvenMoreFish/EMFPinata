@@ -38,7 +38,7 @@ public final class EMFPinata extends JavaPlugin {
 
         new UpdateChecker(this).checkUpdate().thenAccept(success -> {
             if (success) {
-                getLogger().info("A new update is available! Download it from https://modrinth.com/plugin/emfpinata");
+                getLogger().warning("A new update is available! Download it from https://modrinth.com/plugin/emfpinata");
             }
         });
     }
