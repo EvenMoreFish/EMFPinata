@@ -7,7 +7,6 @@ import org.jetbrains.annotations.Nullable;
 import uk.firedev.emfpinata.api.EntityConfig;
 import uk.firedev.messagelib.replacer.Replacer;
 
-import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class GlowingEntityConfig extends EntityConfig<Boolean> {

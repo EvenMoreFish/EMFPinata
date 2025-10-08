@@ -1,12 +1,9 @@
 package uk.firedev.emfpinata.pinata;
 
-import com.oheers.fish.api.reward.Reward;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-
-import java.util.List;
 
 public class PinataListener implements Listener {
 
@@ -22,11 +19,7 @@ public class PinataListener implements Listener {
         if (player == null) {
             return;
         }
-        List<Reward> rewards = pinata.getRewards().getActualValue();
-        if (rewards == null || rewards.isEmpty()) {
-            return;
-        }
-        rewards.forEach(reward -> reward.rewardPlayer(player, event.getEntity().getLocation()));
+        pinata.getRewards().forEach(reward -> reward.rewardPlayer(player, event.getEntity().getLocation()));
     }
 
 }

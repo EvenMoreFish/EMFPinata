@@ -4,10 +4,17 @@ import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
+import uk.firedev.emfpinata.api.EntityConfig;
 import uk.firedev.emfpinata.command.MainCommand;
 import uk.firedev.emfpinata.config.MessageConfig;
 import uk.firedev.emfpinata.pinata.PinataListener;
 import uk.firedev.emfpinata.pinata.PinataManager;
+import uk.firedev.emfpinata.pinata.config.AwareEntityConfig;
+import uk.firedev.emfpinata.pinata.config.DisplayNameEntityConfig;
+import uk.firedev.emfpinata.pinata.config.GlowColorEntityConfig;
+import uk.firedev.emfpinata.pinata.config.GlowingEntityConfig;
+import uk.firedev.emfpinata.pinata.config.HealthEntityConfig;
+import uk.firedev.emfpinata.pinata.config.SilentEntityConfig;
 
 public final class EMFPinata extends JavaPlugin {
 
@@ -28,6 +35,7 @@ public final class EMFPinata extends JavaPlugin {
         instance = this;
         CommandAPI.onEnable();
 
+        loadEntityConfigs();
         MessageConfig.getInstance().reload();
         PinataManager.getInstance().load();
         getServer().getPluginManager().registerEvents(new PinataListener(), this);
@@ -62,6 +70,15 @@ public final class EMFPinata extends JavaPlugin {
 
     private Metrics loadMetrics() {
         return new Metrics(this, 22866);
+    }
+
+    private void loadEntityConfigs() {
+        EntityConfig.register("aware", AwareEntityConfig::new);
+        EntityConfig.register("displayname", DisplayNameEntityConfig::new);
+        EntityConfig.register("glowcolor", GlowColorEntityConfig::new);
+        EntityConfig.register("glowing", GlowingEntityConfig::new);
+        EntityConfig.register("health", HealthEntityConfig::new);
+        EntityConfig.register("silent", SilentEntityConfig::new);
     }
 
 }

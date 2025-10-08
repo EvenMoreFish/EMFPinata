@@ -8,10 +8,46 @@ import org.jetbrains.annotations.Nullable;
 import uk.firedev.messagelib.replacer.Replacer;
 
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.function.BiConsumer;
+import java.util.function.Function;
 
 @ApiStatus.Internal
 public abstract class EntityConfig<T> {
+
+    private static final Map<String, Function<Section, EntityConfig<?>>> registry = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+
+    public static Map<String, Function<Section, EntityConfig<?>>> getRegistry() {
+        return Map.copyOf(registry);
+    }
+
+    public static void unregisterAll() {
+        registry.clear();
+    }
+
+    public static @Nullable EntityConfig<?> get(@NotNull String identifier, @NotNull Section section) {
+        return registry.getOrDefault(identifier, section1 -> null).apply(section);
+    }
+
+    public static boolean register(@NotNull String identifier, @NotNull Function<Section, EntityConfig<?>> function, boolean force) {
+        if (!force && registry.containsKey(identifier)) {
+            return false;
+        }
+        registry.put(identifier, function);
+        return true;
+    }
+
+    public static boolean register(@NotNull String identifier, @NotNull Function<Section, EntityConfig<?>> function) {
+        return register(identifier, function, false);
+    }
+
+    public static boolean unregister(@NotNull String identifier) {
+        if (!registry.containsKey(identifier)) {
+            return false;
+        }
+        registry.remove(identifier);
+        return true;
+    }
 
     private T def;
     private T override;
