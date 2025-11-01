@@ -2,7 +2,6 @@ prefix: "<gray>[EMFPiñata] </gray>"
 main-command:
   reloaded: "{prefix}<white>Successfully reloaded the plugin."
 pinata-command:
-  not-valid: "{prefix}<red>That piñata does not exist!"
   spawned: "{prefix}<white>Successfully spawned a Piñata."
 
 # ATTENTION ATTENTION ATTENTION

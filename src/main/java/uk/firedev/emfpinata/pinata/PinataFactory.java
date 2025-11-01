@@ -1,5 +1,6 @@
 package uk.firedev.emfpinata.pinata;
 
+import com.oheers.fish.api.config.ConfigBase;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import io.lumine.mythic.api.mobs.MythicMob;
 import io.lumine.mythic.bukkit.MythicBukkit;
@@ -12,7 +13,6 @@ import org.jetbrains.annotations.Nullable;
 import uk.firedev.emfpinata.Keys;
 import uk.firedev.emfpinata.Utils;
 import uk.firedev.emfpinata.api.EntityLoader;
-import uk.firedev.emfpinata.config.ConfigBase;
 import uk.firedev.emfpinata.pinata.config.AwareEntityConfig;
 import uk.firedev.emfpinata.pinata.config.DisplayNameEntityConfig;
 import uk.firedev.emfpinata.pinata.config.GlowColorEntityConfig;

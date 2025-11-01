@@ -1,6 +1,6 @@
 package uk.firedev.emfpinata.config;
 
-import org.jetbrains.annotations.NotNull;
+import com.oheers.fish.api.config.ConfigBase;
 import uk.firedev.emfpinata.EMFPinata;
 import uk.firedev.messagelib.message.ComponentMessage;
 import uk.firedev.messagelib.message.ComponentSingleMessage;
@@ -8,11 +8,12 @@ import uk.firedev.messagelib.replacer.Replacer;
 
 import static uk.firedev.messagelib.message.ComponentMessage.componentMessage;
 
+@SuppressWarnings("UnstableApiUsage")
 public class MessageConfig extends ConfigBase {
 
     private static MessageConfig instance;
 
-    private EMFPinataConfigLoader loader;
+    private final EMFPinataConfigLoader loader;
 
     private MessageConfig() {
         super("messages.yml", "messages.yml", EMFPinata.getInstance(), true);
@@ -43,10 +44,6 @@ public class MessageConfig extends ConfigBase {
     }
 
     // PINATA COMMAND
-
-    public ComponentMessage getPinataNotValidMessage() {
-        return componentMessage(loader, "pinata-command.not-valid", "{prefix}<red>That piñata does not exist!").replace(getPrefixReplacer());
-    }
 
     public ComponentMessage getPinataSpawnedMessage() {
         return componentMessage(loader, "pinata-command.spawned", "{prefix}<aqua>Successfully spawned a Piñata.").replace(getPrefixReplacer());

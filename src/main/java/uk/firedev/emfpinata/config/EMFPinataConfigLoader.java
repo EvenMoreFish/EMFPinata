@@ -9,40 +9,40 @@ import java.util.List;
 
 public class EMFPinataConfigLoader implements ConfigLoader<Section> {
 
-    private final Section config;
+    private final Section section;
 
     public EMFPinataConfigLoader(@NotNull Section section) {
-        this.config = section;
+        this.section = section;
     }
 
     @Nullable
     @Override
     public Object getObject(String s) {
-        return config.get(s);
+        return section.get(s);
     }
 
     @Nullable
     @Override
     public String getString(String s) {
-        return config.getString(s);
+        return section.getString(s);
     }
 
     @Override
     public @NotNull List<String> getStringList(String s) {
-        return config.getStringList(s);
+        return section.getStringList(s);
     }
 
     @NotNull
     @Override
     public Section getConfig() {
-        return config;
+        return section;
     }
 
     @Nullable
     @Override
-    public EMFPinataConfigLoader getSection(@NotNull String s) {
-        Section section = config.getSection(s);
-        return section == null ? null : new EMFPinataConfigLoader(section);
+    public ConfigLoader<Section> getSection(@NotNull String s) {
+        Section subsection = section.getSection(s);
+        return subsection == null ? null : new EMFPinataConfigLoader(subsection);
     }
 
 }

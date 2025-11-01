@@ -18,24 +18,21 @@ dependencies {
     compileOnly(libs.paper.api)
     compileOnly(libs.evenmorefish)
     compileOnly(libs.mythicmobs)
-
-    library(libs.boostedyaml)
     
     implementation(libs.bstats)
-    implementation(libs.commandapi)
     implementation(libs.messagelib)
 }
 
 group = "uk.firedev"
 version = properties["project-version"] as String
 description = "A Piñata addon for the EvenMoreFish plugin."
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 bukkit {
     name = project.name
     version = project.version.toString()
     main = "uk.firedev.emfpinata.EMFPinata"
-    apiVersion = "1.20"
+    apiVersion = "1.21"
     author = "FireML"
     description = project.description.toString()
 
@@ -85,7 +82,6 @@ tasks {
         archiveClassifier.set("")
 
         relocate("org.bstats", "uk.firedev.emfpinata.libs.bstats")
-        relocate("dev.jorel.commandapi", "uk.firedev.emfpinata.libs.commandapi")
         relocate("uk.firedev.messagelib", "uk.firedev.emfpinata.libs.messagelib")
     }
     withType<JavaCompile> {

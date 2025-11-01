@@ -1,48 +1,52 @@
 package uk.firedev.emfpinata.command;
 
-import dev.jorel.commandapi.CommandTree;
-import dev.jorel.commandapi.arguments.Argument;
-import dev.jorel.commandapi.arguments.LiteralArgument;
+import com.mojang.brigadier.builder.ArgumentBuilder;
+import com.mojang.brigadier.tree.LiteralCommandNode;
+import io.papermc.paper.command.brigadier.CommandSourceStack;
+import io.papermc.paper.command.brigadier.Commands;
 import org.bukkit.entity.Player;
 import uk.firedev.emfpinata.EMFPinata;
+import uk.firedev.emfpinata.command.argument.PinataArgument;
 import uk.firedev.emfpinata.config.MessageConfig;
 import uk.firedev.emfpinata.pinata.Pinata;
 import uk.firedev.messagelib.replacer.Replacer;
 
-import java.util.Objects;
-
+@SuppressWarnings("UnstableApiUsage")
 public class MainCommand {
 
-    public static CommandTree getCommand() {
-        return new CommandTree("emfpinata")
-            .withPermission("emfpinata.command")
-            .withShortDescription("Manage the plugin")
-            .withFullDescription("Manage the plugin")
-            .then(getReload())
-            .then(getPinata());
+    public LiteralCommandNode<CommandSourceStack> get() {
+        return Commands.literal("emfpinata")
+            .requires(stack -> stack.getSender().hasPermission("emfpinata.command"))
+            .then(reload())
+            .then(pinata())
+            .build();
     }
 
-    private static Argument<String> getReload() {
-        return new LiteralArgument("reload")
-            .executes(info -> {
+    private ArgumentBuilder<CommandSourceStack, ?> reload() {
+        return Commands.literal("reload")
+            .executes(context -> {
                 EMFPinata.getInstance().reload();
-                MessageConfig.getInstance().getReloadedMessage().send(info.sender());
+                MessageConfig.getInstance().getReloadedMessage().send(context.getSource().getSender());
+                return 1;
             });
     }
 
-    private static Argument<String> getPinata() {
-        return new LiteralArgument("pinata")
+    private ArgumentBuilder<CommandSourceStack, ?> pinata() {
+        return Commands.literal("pinata")
             .then(
-                PinataArgument.get().executesPlayer(
-                    info -> {
-                        Pinata pinata = Objects.requireNonNull(info.args().getUnchecked("pinata"));
-                        Player player = info.sender();
+                Commands.argument("pinata", new PinataArgument())
+                    .executes(context -> {
+                        Player player = CommandUtils.requirePlayer(context.getSource());
+                        if (player == null) {
+                            return 1;
+                        }
+                        Pinata pinata = context.getArgument("pinata", Pinata.class);
                         Replacer replacer = Replacer.replacer().addReplacement("{player}", player.name());
 
                         MessageConfig.getInstance().getPinataSpawnedMessage().send(player);
                         pinata.getFactory().spawnEntity(player.getLocation(), replacer);
-                    }
-                )
+                        return 1;
+                    })
             );
     }
 

@@ -1,9 +1,9 @@
 package uk.firedev.emfpinata.pinata;
 
+import com.oheers.fish.api.config.ConfigBase;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.jetbrains.annotations.NotNull;
 import uk.firedev.emfpinata.EMFPinata;
-import uk.firedev.emfpinata.config.ConfigBase;
 import uk.firedev.emfpinata.pinata.config.RewardsEntityConfig;
 
 import java.io.File;
