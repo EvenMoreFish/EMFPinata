@@ -23,7 +23,7 @@ dependencies {
     implementation(libs.messagelib)
 }
 
-group = "uk.firedev"
+group = "org.evenmorefish"
 version = properties["project-version"] as String
 description = "A Piñata addon for the EvenMoreFish plugin."
 java.sourceCompatibility = JavaVersion.VERSION_21
@@ -31,7 +31,7 @@ java.sourceCompatibility = JavaVersion.VERSION_21
 bukkit {
     name = project.name
     version = project.version.toString()
-    main = "uk.firedev.emfpinata.EMFPinata"
+    main = "org.evenmorefish.emfpinata.EMFPinata"
     apiVersion = "1.21"
     author = "FireML"
     description = project.description.toString()
@@ -81,8 +81,8 @@ tasks {
         archiveVersion.set(project.version.toString())
         archiveClassifier.set("")
 
-        relocate("org.bstats", "uk.firedev.emfpinata.libs.bstats")
-        relocate("uk.firedev.messagelib", "uk.firedev.emfpinata.libs.messagelib")
+        relocate("org.bstats", "org.evenmorefish.emfpinata.libs.bstats")
+        relocate("uk.firedev.messagelib", "org.evenmorefish.emfpinata.libs.messagelib")
     }
     withType<JavaCompile> {
         options.encoding = "UTF-8"
