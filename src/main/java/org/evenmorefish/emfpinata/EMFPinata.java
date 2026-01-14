@@ -52,9 +52,9 @@ public final class EMFPinata extends JavaPlugin {
     }
 
     private void registerCommands() {
-        this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
-            commands.registrar().register(new MainCommand().get());
-        });
+        this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands ->
+            commands.registrar().register(new MainCommand().get())
+        );
     }
 
     private Metrics loadMetrics() {
