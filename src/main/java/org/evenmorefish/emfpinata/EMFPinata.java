@@ -17,6 +17,7 @@ public final class EMFPinata extends JavaPlugin {
 
     @Override
     public void onLoad() {
+        EMFVersionChecker.checkMinimumVersionInstalled();
         registerCommands();
     }
 
