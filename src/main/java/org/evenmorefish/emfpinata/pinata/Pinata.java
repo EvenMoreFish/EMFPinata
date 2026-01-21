@@ -2,14 +2,15 @@ package org.evenmorefish.emfpinata.pinata;
 
 import com.oheers.fish.api.config.ConfigBase;
 import org.bukkit.configuration.InvalidConfigurationException;
-import org.jetbrains.annotations.NotNull;
 import org.evenmorefish.emfpinata.EMFPinata;
 import org.evenmorefish.emfpinata.pinata.config.RewardsEntityConfig;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+@SuppressWarnings("UnstableApiUsage")
 public class Pinata extends ConfigBase {
 
     private static final Logger logger = EMFPinata.getInstance().getLogger();

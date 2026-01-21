@@ -4,8 +4,8 @@ import io.lumine.mythic.api.mobs.MythicMob;
 import io.lumine.mythic.bukkit.BukkitAdapter;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
-import org.jetbrains.annotations.NotNull;
 import org.evenmorefish.emfpinata.api.EntityLoader;
+import org.jetbrains.annotations.NotNull;
 
 public class MythicEntityLoader extends EntityLoader {
 

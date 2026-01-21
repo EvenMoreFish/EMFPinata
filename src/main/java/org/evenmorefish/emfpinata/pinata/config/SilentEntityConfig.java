@@ -2,12 +2,11 @@ package org.evenmorefish.emfpinata.pinata.config;
 
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.entity.Entity;
+import org.evenmorefish.emfpinata.api.EntityConfig;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.evenmorefish.emfpinata.api.EntityConfig;
 import uk.firedev.messagelib.replacer.Replacer;
 
-import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class SilentEntityConfig extends EntityConfig<Boolean> {

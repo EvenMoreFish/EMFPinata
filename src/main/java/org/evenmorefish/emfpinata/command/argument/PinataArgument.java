@@ -10,9 +10,9 @@ import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import io.papermc.paper.command.brigadier.MessageComponentSerializer;
 import io.papermc.paper.command.brigadier.argument.CustomArgumentType;
 import net.kyori.adventure.text.Component;
-import org.jetbrains.annotations.NotNull;
 import org.evenmorefish.emfpinata.pinata.Pinata;
 import org.evenmorefish.emfpinata.pinata.PinataManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 

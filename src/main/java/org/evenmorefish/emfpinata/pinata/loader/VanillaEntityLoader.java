@@ -3,8 +3,8 @@ package org.evenmorefish.emfpinata.pinata.loader;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.jetbrains.annotations.NotNull;
 import org.evenmorefish.emfpinata.api.EntityLoader;
+import org.jetbrains.annotations.NotNull;
 
 public class VanillaEntityLoader extends EntityLoader {
 

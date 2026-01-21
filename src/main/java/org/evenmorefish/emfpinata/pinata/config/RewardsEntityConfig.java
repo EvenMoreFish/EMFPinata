@@ -3,10 +3,10 @@ package org.evenmorefish.emfpinata.pinata.config;
 import com.oheers.fish.api.reward.Reward;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.entity.Entity;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.evenmorefish.emfpinata.api.EntityConfig;
 import org.evenmorefish.emfpinata.pinata.PinataRewardType;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import uk.firedev.messagelib.replacer.Replacer;
 
 import java.util.List;

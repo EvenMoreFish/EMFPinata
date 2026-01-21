@@ -4,8 +4,8 @@ import com.oheers.fish.api.reward.RewardType;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
 import org.evenmorefish.emfpinata.EMFPinata;
+import org.jetbrains.annotations.NotNull;
 import uk.firedev.messagelib.replacer.Replacer;
 
 public class PinataRewardType extends RewardType {

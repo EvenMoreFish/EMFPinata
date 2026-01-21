@@ -8,8 +8,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.persistence.PersistentDataType;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.evenmorefish.emfpinata.Keys;
 import org.evenmorefish.emfpinata.Utils;
 import org.evenmorefish.emfpinata.api.EntityLoader;
@@ -21,6 +19,8 @@ import org.evenmorefish.emfpinata.pinata.config.HealthEntityConfig;
 import org.evenmorefish.emfpinata.pinata.config.SilentEntityConfig;
 import org.evenmorefish.emfpinata.pinata.loader.MythicEntityLoader;
 import org.evenmorefish.emfpinata.pinata.loader.VanillaEntityLoader;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import uk.firedev.messagelib.replacer.Replacer;
 
 import java.util.function.Consumer;
