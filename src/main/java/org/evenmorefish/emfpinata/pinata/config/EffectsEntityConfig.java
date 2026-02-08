@@ -1,10 +1,10 @@
 package org.evenmorefish.emfpinata.pinata.config;
 
+import com.oheers.fish.FishUtils;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
-import org.evenmorefish.emfpinata.Utils;
 import org.evenmorefish.emfpinata.api.EntityConfig;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -27,7 +27,7 @@ public class EffectsEntityConfig extends EntityConfig<List<PotionEffect>> {
             return List.of();
         }
         return effects.stream()
-            .map(Utils::getPotionEffect)
+            .map(effect -> FishUtils.getPotionEffect(effect, ","))
             .filter(Objects::nonNull)
             .toList();
     }

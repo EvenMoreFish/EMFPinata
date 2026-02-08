@@ -1,5 +1,6 @@
 package org.evenmorefish.emfpinata.pinata;
 
+import com.oheers.fish.FishUtils;
 import com.oheers.fish.api.config.ConfigBase;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import io.lumine.mythic.api.mobs.MythicMob;
@@ -9,11 +10,11 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.persistence.PersistentDataType;
 import org.evenmorefish.emfpinata.Keys;
-import org.evenmorefish.emfpinata.Utils;
 import org.evenmorefish.emfpinata.api.EntityLoader;
 import org.evenmorefish.emfpinata.pinata.config.AwareEntityConfig;
 import org.evenmorefish.emfpinata.pinata.config.DisplayNameEntityConfig;
 import org.evenmorefish.emfpinata.pinata.config.EffectsEntityConfig;
+import org.evenmorefish.emfpinata.pinata.config.EquipmentEntityConfig;
 import org.evenmorefish.emfpinata.pinata.config.GlowColorEntityConfig;
 import org.evenmorefish.emfpinata.pinata.config.GlowingEntityConfig;
 import org.evenmorefish.emfpinata.pinata.config.HealthEntityConfig;
@@ -37,6 +38,7 @@ public class PinataFactory extends ConfigBase {
     private final AwareEntityConfig awareness;
     private final DisplayNameEntityConfig displayName;
     private final EffectsEntityConfig effects;
+    private final EquipmentEntityConfig equipment;
     private final GlowColorEntityConfig glowColor;
     private final GlowingEntityConfig glowing;
     private final HealthEntityConfig health;
@@ -49,6 +51,7 @@ public class PinataFactory extends ConfigBase {
         this.awareness = new AwareEntityConfig(this.config);
         this.displayName = new DisplayNameEntityConfig(this.config);
         this.effects = new EffectsEntityConfig(this.config);
+        this.equipment = new EquipmentEntityConfig(this.config);
         this.glowColor = new GlowColorEntityConfig(this.config);
         this.glowing = new GlowingEntityConfig(this.config);
         this.health = new HealthEntityConfig(this.config);
@@ -68,6 +71,7 @@ public class PinataFactory extends ConfigBase {
         awareness.apply(entity, replacements);
         displayName.apply(entity, replacements);
         effects.apply(entity, replacements);
+        equipment.apply(entity, replacements);
         glowColor.apply(entity, replacements);
         glowing.apply(entity, replacements);
         health.apply(entity, replacements);
@@ -92,6 +96,10 @@ public class PinataFactory extends ConfigBase {
 
     public @NotNull EffectsEntityConfig getEffects() {
         return effects;
+    }
+
+    public @NotNull EquipmentEntityConfig getEquipment() {
+        return equipment;
     }
 
     public @NotNull GlowColorEntityConfig getGlowColor() {
@@ -138,7 +146,7 @@ public class PinataFactory extends ConfigBase {
 
     // Vanilla
     public @Nullable VanillaEntityLoader getVanillaEntityLoader(@NotNull String rawValue) {
-        EntityType entityType = Utils.getEnumValue(EntityType.class, rawValue);
+        EntityType entityType = FishUtils.getEnumValue(EntityType.class, rawValue);
         if (entityType == null) {
             return null;
         }
