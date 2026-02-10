@@ -38,3 +38,37 @@ has-awareness: true
 # The only reward that will not work here is the PINATA reward to avoid infinite loops.
 rewards:
   - "ITEM:STONE,10"
+
+# Configure your Piñata's potion effects. This uses the same format as the effect reward type.
+effects:
+  - "SPEED,5,100"
+  - "OOZING,1,50"
+
+# Configure your Piñata's equipment. The items are configured identically to EvenMoreFish.
+equipment:
+  # Equip the main hand with glowing bedrock.
+  hand:
+    item:
+      material: bedrock
+      glowing: true
+  # Equip the off hand with a glowing netherite pickaxe.
+  off_hand:
+    item:
+      material: netherite_pickaxe
+      glowing: true
+  # Equip the head with a FireML player head.
+  head:
+    item:
+      head-uuid: 8c97e9bc-ec74-4e02-bf9e-37d1852e7ea6
+  # Equip the chest with a diamond chestplate.
+  chest:
+    item:
+      material: diamond_chestplate
+  # Equip the legs with diamond leggings.
+  legs:
+    item:
+      material: diamond_leggings
+  # Equip the feet with netherite boots.
+  feet:
+    item:
+      material: netherite_boots
