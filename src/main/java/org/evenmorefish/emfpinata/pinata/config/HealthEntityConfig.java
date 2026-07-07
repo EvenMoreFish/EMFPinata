@@ -5,6 +5,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.evenmorefish.emfpinata.EMFPinata;
 import org.evenmorefish.emfpinata.api.EntityConfig;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -28,20 +29,22 @@ public class HealthEntityConfig extends EntityConfig<Integer> {
         return (entity, value) -> {
             if (value == null) {
                 return;
-            } else if (value <= 0) {
-                // Health cannot be less than 1.
-                value = 1;
-            } else if (value > 2048) {
-                // Health cannot be more than 2048.
-                value = 2048;
             }
+            // Health cannot be less than 1.
+            value = Math.max(value, 1);
             if (!(entity instanceof LivingEntity livingEntity)) {
                 return;
             }
             AttributeInstance attribute = livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH);
             if (attribute != null) {
-                attribute.setBaseValue(value);
-                livingEntity.setHealth(value);
+                try {
+                    attribute.setBaseValue(value);
+                    livingEntity.setHealth(value);
+                } catch (IllegalArgumentException exception) {
+                    EMFPinata.getInstance().getLogger().warning("Invalid health value: " + value + ". Defaulting to 1024.");
+                    attribute.setBaseValue(1024);
+                    livingEntity.setHealth(1024);
+                }
             }
         };
     }
