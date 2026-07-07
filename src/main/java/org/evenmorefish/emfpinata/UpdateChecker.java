@@ -33,20 +33,21 @@ public class UpdateChecker {
                 .GET()
                 .build();
 
-            HttpResponse<String> response = HttpClient.newHttpClient()
-                .send(request, HttpResponse.BodyHandlers.ofString());
+            try (HttpClient client = HttpClient.newHttpClient()) {
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() != 200) {
-                throw new IOException("HTTP " + response.statusCode());
+                if (response.statusCode() != 200) {
+                    throw new IOException("HTTP " + response.statusCode());
+                }
+
+                JSONArray versions = (JSONArray) new JSONParser().parse(response.body());
+                if (versions.isEmpty()) {
+                    return plugin.getPluginMeta().getVersion();
+                }
+
+                JSONObject latestVersion = (JSONObject) versions.getFirst();
+                return latestVersion.get("version_number").toString();
             }
-
-            JSONArray versions = (JSONArray) new JSONParser().parse(response.body());
-            if (versions.isEmpty()) {
-                return plugin.getPluginMeta().getVersion();
-            }
-
-            JSONObject latestVersion = (JSONObject) versions.get(0);
-            return latestVersion.get("version_number").toString();
         } catch (Exception e) {
             plugin.getLogger().warning("Update check failed: " + e.getMessage());
             plugin.getLogger().info("Manual update check: https://modrinth.com/plugin/emfpinata/versions");
@@ -60,7 +61,7 @@ public class UpdateChecker {
     @SuppressWarnings("UnstableApiUsage")
     public @NotNull CompletableFuture<Boolean> checkUpdate() {
         return CompletableFuture.supplyAsync(() -> {
-            ComparableVersion modrinthVersion = new ComparableVersion(new UpdateChecker(plugin).getVersion());
+            ComparableVersion modrinthVersion = new ComparableVersion(getVersion());
             ComparableVersion serverVersion = new ComparableVersion(plugin.getPluginMeta().getVersion());
             return modrinthVersion.compareTo(serverVersion) > 0;
         });
