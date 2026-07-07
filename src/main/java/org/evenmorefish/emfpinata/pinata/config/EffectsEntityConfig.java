@@ -27,7 +27,7 @@ public class EffectsEntityConfig extends EntityConfig<List<PotionEffect>> {
             return List.of();
         }
         return effects.stream()
-            .map(effect -> FishUtils.getPotionEffect(effect, ","))
+            .map(FishUtils::getPotionEffect)
             .filter(Objects::nonNull)
             .toList();
     }
