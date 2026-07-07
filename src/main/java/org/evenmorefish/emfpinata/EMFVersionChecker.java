@@ -5,7 +5,7 @@ import org.apache.maven.artifact.versioning.ComparableVersion;
 
 public class EMFVersionChecker {
 
-    private static final String MINIMUM_EMF_VERSION = "2.1.8";
+    private static final String MINIMUM_EMF_VERSION = "2.1.14";
 
     @SuppressWarnings("UnstableApiUsage")
     private static String getEMFVersion() {
