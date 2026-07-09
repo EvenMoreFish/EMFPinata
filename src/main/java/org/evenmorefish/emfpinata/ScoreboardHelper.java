@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,7 @@ public class ScoreboardHelper {
 
     private ScoreboardHelper() {}
 
-    public static void addToTeam(@NotNull Entity entity, @NotNull String color) {
+    public static void addToTeam(@NonNull Entity entity, @NonNull String color) {
         color = color.toLowerCase();
         NamedTextColor namedTextColor = NamedTextColor.NAMES.value(color);
         if (namedTextColor == null) {

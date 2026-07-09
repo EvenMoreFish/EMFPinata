@@ -6,8 +6,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
 import org.evenmorefish.emfpinata.api.EntityConfig;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import uk.firedev.messagelib.replacer.Replacer;
 
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.function.BiConsumer;
 
 public class EffectsEntityConfig extends EntityConfig<List<PotionEffect>> {
 
-    public EffectsEntityConfig(@NotNull Section section) {
+    public EffectsEntityConfig(@NonNull Section section) {
         super(section);
     }
 

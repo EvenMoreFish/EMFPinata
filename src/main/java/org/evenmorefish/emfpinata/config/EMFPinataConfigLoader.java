@@ -1,8 +1,8 @@
 package org.evenmorefish.emfpinata.config;
 
 import dev.dejvokep.boostedyaml.block.implementation.Section;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import uk.firedev.messagelib.config.ConfigLoader;
 
 import java.util.List;
@@ -11,7 +11,7 @@ public class EMFPinataConfigLoader implements ConfigLoader<Section> {
 
     private final Section section;
 
-    public EMFPinataConfigLoader(@NotNull Section section) {
+    public EMFPinataConfigLoader(@NonNull Section section) {
         this.section = section;
     }
 
@@ -28,11 +28,11 @@ public class EMFPinataConfigLoader implements ConfigLoader<Section> {
     }
 
     @Override
-    public @NotNull List<String> getStringList(String s) {
+    public @NonNull List<String> getStringList(String s) {
         return section.getStringList(s);
     }
 
-    @NotNull
+    @NonNull
     @Override
     public Section getConfig() {
         return section;
@@ -40,7 +40,7 @@ public class EMFPinataConfigLoader implements ConfigLoader<Section> {
 
     @Nullable
     @Override
-    public ConfigLoader<Section> getSection(@NotNull String s) {
+    public ConfigLoader<Section> getSection(@NonNull String s) {
         Section subsection = section.getSection(s);
         return subsection == null ? null : new EMFPinataConfigLoader(subsection);
     }

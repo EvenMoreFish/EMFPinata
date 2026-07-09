@@ -3,8 +3,8 @@ package org.evenmorefish.emfpinata.api;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import uk.firedev.messagelib.replacer.Replacer;
 
 import java.util.function.BiConsumer;
@@ -17,7 +17,7 @@ public abstract class EntityConfig<T> {
     protected final Section section;
     protected boolean enabled = true;
 
-    public EntityConfig(@NotNull Section section) {
+    public EntityConfig(@NonNull Section section) {
         this.section = section;
     }
 
@@ -36,7 +36,7 @@ public abstract class EntityConfig<T> {
      * Applies the actual value to the entity if this config is enabled.
      * @param entity The entity to apply the config to.
      */
-    public void apply(@NotNull Entity entity, @Nullable Replacer replacements) {
+    public void apply(@NonNull Entity entity, @Nullable Replacer replacements) {
         if (!enabled) {
             return;
         }

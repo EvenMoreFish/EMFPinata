@@ -4,7 +4,7 @@ import com.oheers.fish.api.config.ConfigBase;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.evenmorefish.emfpinata.EMFPinata;
 import org.evenmorefish.emfpinata.pinata.config.RewardsEntityConfig;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.File;
 import java.util.Objects;
@@ -18,7 +18,7 @@ public class Pinata extends ConfigBase {
     private final PinataFactory factory;
     private final RewardsEntityConfig rewards;
 
-    public Pinata(@NotNull File file) throws InvalidConfigurationException {
+    public Pinata(@NonNull File file) throws InvalidConfigurationException {
         super(file, EMFPinata.getInstance(), false);
         performRequiredConfigChecks();
         this.factory = new PinataFactory(getConfig(), getId());
@@ -35,7 +35,7 @@ public class Pinata extends ConfigBase {
 
     // Config Getters
 
-    public @NotNull String getId() {
+    public @NonNull String getId() {
         return Objects.requireNonNull(getConfig().getString("id"));
     }
 
@@ -43,11 +43,11 @@ public class Pinata extends ConfigBase {
         return getConfig().getBoolean("disabled");
     }
 
-    public @NotNull PinataFactory getFactory() {
+    public @NonNull PinataFactory getFactory() {
         return factory;
     }
 
-    public @NotNull RewardsEntityConfig getRewards() {
+    public @NonNull RewardsEntityConfig getRewards() {
         return rewards;
     }
 

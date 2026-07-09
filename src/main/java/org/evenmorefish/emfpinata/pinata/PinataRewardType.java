@@ -5,13 +5,13 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.evenmorefish.emfpinata.EMFPinata;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 import uk.firedev.messagelib.replacer.Replacer;
 
 public class PinataRewardType extends RewardType {
 
     @Override
-    public void doReward(@NotNull Player player, @NotNull String key, @NotNull String value, Location hookLocation) {
+    public void doReward(@NonNull Player player, @NonNull String key, @NonNull String value, Location hookLocation) {
         Pinata pinata;
         if (value.equalsIgnoreCase("random")) {
             pinata = PinataManager.getInstance().getRandomPinata();
@@ -27,20 +27,20 @@ public class PinataRewardType extends RewardType {
         pinata.getFactory().spawnEntity(finalLocation, replacer);
     }
 
-    @NotNull
+    @NonNull
     @Override
     public String getIdentifier() {
         return "PINATA";
     }
 
-    @NotNull
+    @NonNull
     @Override
     public String getAuthor() {
         return "FireML";
     }
 
     @Override
-    public @NotNull Plugin getPlugin() {
+    public @NonNull Plugin getPlugin() {
         return EMFPinata.getInstance();
     }
 

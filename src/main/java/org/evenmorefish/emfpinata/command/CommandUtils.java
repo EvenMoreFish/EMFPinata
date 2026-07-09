@@ -5,8 +5,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import java.util.function.Predicate;
 
@@ -25,7 +25,7 @@ public class CommandUtils {
         return player;
     }
 
-    public static Predicate<CommandSourceStack> playerPredicate(@NotNull Predicate<Player> playerPredicate) {
+    public static Predicate<CommandSourceStack> playerPredicate(@NonNull Predicate<Player> playerPredicate) {
         return sender -> {
             if (!(sender.getSender() instanceof Player player)) {
                 return false;

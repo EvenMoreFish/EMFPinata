@@ -72,3 +72,8 @@ equipment:
   feet:
     item:
       material: netherite_boots
+
+# Change any attributes
+attributes:
+  - gravity,0
+  - scale,4

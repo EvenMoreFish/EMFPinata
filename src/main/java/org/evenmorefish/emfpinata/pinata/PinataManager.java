@@ -6,8 +6,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.persistence.PersistentDataType;
 import org.evenmorefish.emfpinata.EMFPinata;
 import org.evenmorefish.emfpinata.Keys;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -47,15 +47,15 @@ public class PinataManager {
         pinataMap.clear();
     }
 
-    public @NotNull Map<String, Pinata> getPinataMap() {
+    public @NonNull Map<String, Pinata> getPinataMap() {
         return Map.copyOf(pinataMap);
     }
 
-    public @Nullable Pinata getPinata(@NotNull String name) {
+    public @Nullable Pinata getPinata(@NonNull String name) {
         return pinataMap.get(name);
     }
 
-    public @Nullable Pinata getPinata(@NotNull Entity entity) {
+    public @Nullable Pinata getPinata(@NonNull Entity entity) {
         String id = entity.getPersistentDataContainer().get(Keys.PINATA_KEY, PersistentDataType.STRING);
         if (id == null) {
             return null;
@@ -114,12 +114,12 @@ public class PinataManager {
         });
     }
 
-    private void regenExampleFile(@NotNull File targetDirectory) {
+    private void regenExampleFile(@NonNull File targetDirectory) {
         new File(targetDirectory, "_example.yml").delete();
         FileUtil.loadFileOrResource(targetDirectory, "_example.yml", "pinatas/_example.yml", EMFPinata.getInstance());
     }
 
-    private void loadDefaultFiles(@NotNull File targetDirectory) {
+    private void loadDefaultFiles(@NonNull File targetDirectory) {
         EMFPinata.getInstance().getLogger().info("Loading default pinata configs.");
         FileUtil.loadFileOrResource(targetDirectory, "default.yml", "pinatas/default.yml", EMFPinata.getInstance());
     }

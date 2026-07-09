@@ -12,7 +12,7 @@ import io.papermc.paper.command.brigadier.argument.CustomArgumentType;
 import net.kyori.adventure.text.Component;
 import org.evenmorefish.emfpinata.pinata.Pinata;
 import org.evenmorefish.emfpinata.pinata.PinataManager;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -32,15 +32,15 @@ public class PinataArgument implements CustomArgumentType.Converted<Pinata, Stri
         return pinata;
     }
 
-    @NotNull
+    @NonNull
     @Override
     public ArgumentType<String> getNativeType() {
         return StringArgumentType.string();
     }
 
-    @NotNull
+    @NonNull
     @Override
-    public <S> CompletableFuture<Suggestions> listSuggestions(@NotNull CommandContext<S> context, @NotNull SuggestionsBuilder builder) {
+    public <S> CompletableFuture<Suggestions> listSuggestions(@NonNull CommandContext<S> context, @NonNull SuggestionsBuilder builder) {
         PinataManager.getInstance().getPinataMap().values().stream()
             .map(Pinata::getId)
             .filter(name -> name.toLowerCase().startsWith(builder.getRemainingLowerCase()))

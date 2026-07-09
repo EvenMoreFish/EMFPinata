@@ -8,9 +8,11 @@ import io.lumine.mythic.bukkit.MythicBukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataType;
 import org.evenmorefish.emfpinata.Keys;
 import org.evenmorefish.emfpinata.api.EntityLoader;
+import org.evenmorefish.emfpinata.pinata.config.AttributesEntityConfig;
 import org.evenmorefish.emfpinata.pinata.config.AwareEntityConfig;
 import org.evenmorefish.emfpinata.pinata.config.DisplayNameEntityConfig;
 import org.evenmorefish.emfpinata.pinata.config.EffectsEntityConfig;
@@ -21,20 +23,20 @@ import org.evenmorefish.emfpinata.pinata.config.HealthEntityConfig;
 import org.evenmorefish.emfpinata.pinata.config.SilentEntityConfig;
 import org.evenmorefish.emfpinata.pinata.loader.MythicEntityLoader;
 import org.evenmorefish.emfpinata.pinata.loader.VanillaEntityLoader;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import uk.firedev.messagelib.replacer.Replacer;
 
 import java.util.function.Consumer;
 
-@SuppressWarnings("UnstableApiUsage")
 public class PinataFactory extends ConfigBase {
 
-    private final @NotNull Section config;
+    private final @NonNull Section config;
     private Consumer<Entity> finalChanges = null;
-    private final @NotNull EntityLoader entityLoader;
-    private final @NotNull String pinataId;
+    private final @NonNull EntityLoader entityLoader;
+    private final @NonNull String pinataId;
 
+    private final AttributesEntityConfig attributes;
     private final AwareEntityConfig awareness;
     private final DisplayNameEntityConfig displayName;
     private final EffectsEntityConfig effects;
@@ -44,10 +46,11 @@ public class PinataFactory extends ConfigBase {
     private final HealthEntityConfig health;
     private final SilentEntityConfig silent;
 
-    protected PinataFactory(@NotNull Section section, @NotNull String pinataId) {
+    protected PinataFactory(@NonNull Section section, @NonNull String pinataId) {
         this.config = section;
         this.pinataId = pinataId;
 
+        this.attributes = new AttributesEntityConfig(this.config);
         this.awareness = new AwareEntityConfig(this.config);
         this.displayName = new DisplayNameEntityConfig(this.config);
         this.effects = new EffectsEntityConfig(this.config);
@@ -60,14 +63,15 @@ public class PinataFactory extends ConfigBase {
         this.entityLoader = fetchEntityLoader();
     }
 
-    public void spawnEntity(@NotNull Location location) {
+    public void spawnEntity(@NonNull Location location) {
         spawnEntity(location, null);
     }
 
-    public void spawnEntity(@NotNull Location location, @Nullable Replacer replacements) {
+    public void spawnEntity(@NonNull Location location, @Nullable Replacer replacements) {
         Entity entity = entityLoader.spawn(location);
 
         // Step 1: Apply configs
+        attributes.apply(entity, replacements);
         awareness.apply(entity, replacements);
         displayName.apply(entity, replacements);
         effects.apply(entity, replacements);
@@ -86,35 +90,35 @@ public class PinataFactory extends ConfigBase {
         entity.getPersistentDataContainer().set(Keys.PINATA_KEY, PersistentDataType.STRING, pinataId);
     }
 
-    public @NotNull AwareEntityConfig getAwareness() {
+    public @NonNull AwareEntityConfig getAwareness() {
         return awareness;
     }
 
-    public @NotNull DisplayNameEntityConfig getDisplayName() {
+    public @NonNull DisplayNameEntityConfig getDisplayName() {
         return displayName;
     }
 
-    public @NotNull EffectsEntityConfig getEffects() {
+    public @NonNull EffectsEntityConfig getEffects() {
         return effects;
     }
 
-    public @NotNull EquipmentEntityConfig getEquipment() {
+    public @NonNull EquipmentEntityConfig getEquipment() {
         return equipment;
     }
 
-    public @NotNull GlowColorEntityConfig getGlowColor() {
+    public @NonNull GlowColorEntityConfig getGlowColor() {
         return glowColor;
     }
 
-    public @NotNull GlowingEntityConfig getGlowing() {
+    public @NonNull GlowingEntityConfig getGlowing() {
         return glowing;
     }
 
-    public @NotNull HealthEntityConfig getHealth() {
+    public @NonNull HealthEntityConfig getHealth() {
         return health;
     }
 
-    public @NotNull SilentEntityConfig getSilent() {
+    public @NonNull SilentEntityConfig getSilent() {
         return silent;
     }
 
@@ -145,7 +149,7 @@ public class PinataFactory extends ConfigBase {
     // Entity Loader Methods
 
     // Vanilla
-    public @Nullable VanillaEntityLoader getVanillaEntityLoader(@NotNull String rawValue) {
+    public @Nullable VanillaEntityLoader getVanillaEntityLoader(@NonNull String rawValue) {
         EntityType entityType = FishUtils.getEnumValue(EntityType.class, rawValue);
         if (entityType == null) {
             return null;
@@ -154,7 +158,7 @@ public class PinataFactory extends ConfigBase {
     }
 
     // MythicMobs
-    public @Nullable MythicEntityLoader getMythicEntityLoader(@NotNull String rawValue) {
+    public @Nullable MythicEntityLoader getMythicEntityLoader(@NonNull String rawValue) {
         String mobName;
         if (rawValue.startsWith("mythic:")) {
             mobName = rawValue.substring("mythic:".length());
