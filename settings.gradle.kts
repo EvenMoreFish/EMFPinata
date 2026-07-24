@@ -9,7 +9,7 @@ dependencyResolutionManagement {
 
             library("evenmorefish", "com.oheers.evenmorefish:even-more-fish-plugin:2.1.14")
 
-            library("messagelib", "uk.firedev:MessageLib:1.0.6")
+            library("messagelib", "uk.firedev:MessageLib:1.0.8")
 
             plugin("shadow", "com.gradleup.shadow").version("9.2.1")
             plugin("plugin-yml", "de.eldoria.plugin-yml.bukkit").version("0.8.0")
