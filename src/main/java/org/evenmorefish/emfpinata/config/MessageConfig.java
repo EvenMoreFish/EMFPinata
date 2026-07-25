@@ -8,7 +8,6 @@ import uk.firedev.messagelib.replacer.Replacer;
 
 import static uk.firedev.messagelib.message.ComponentMessage.componentMessage;
 
-@SuppressWarnings("UnstableApiUsage")
 public class MessageConfig extends ConfigBase {
 
     private static MessageConfig instance;

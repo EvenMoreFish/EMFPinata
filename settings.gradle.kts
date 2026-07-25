@@ -7,7 +7,8 @@ dependencyResolutionManagement {
             library("bstats", "org.bstats:bstats-bukkit:3.1.0")
             library("mythicmobs", "io.lumine:Mythic-Dist:5.6.2")
 
-            library("evenmorefish", "com.oheers.evenmorefish:even-more-fish-plugin:2.4.3")
+            library("evenmorefish", "com.oheers.evenmorefish:even-more-fish-plugin:2.4.4-SNAPSHOT")
+            library("boostedyaml", "dev.dejvokep:boosted-yaml:1.3.7")
 
             library("messagelib", "uk.firedev:MessageLib:1.0.8")
 

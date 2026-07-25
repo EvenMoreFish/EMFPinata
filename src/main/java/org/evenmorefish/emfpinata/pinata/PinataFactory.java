@@ -1,6 +1,5 @@
 package org.evenmorefish.emfpinata.pinata;
 
-import com.oheers.fish.FishUtils;
 import com.oheers.fish.api.config.ConfigBase;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
 import io.lumine.mythic.api.mobs.MythicMob;
@@ -8,7 +7,6 @@ import io.lumine.mythic.bukkit.MythicBukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.persistence.PersistentDataType;
 import org.evenmorefish.emfpinata.Keys;
 import org.evenmorefish.emfpinata.api.EntityLoader;
@@ -27,6 +25,7 @@ import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import uk.firedev.messagelib.replacer.Replacer;
 
+import java.util.Locale;
 import java.util.function.Consumer;
 
 public class PinataFactory extends ConfigBase {
@@ -150,11 +149,12 @@ public class PinataFactory extends ConfigBase {
 
     // Vanilla
     public @Nullable VanillaEntityLoader getVanillaEntityLoader(@NonNull String rawValue) {
-        EntityType entityType = FishUtils.getEnumValue(EntityType.class, rawValue);
-        if (entityType == null) {
+        try {
+            EntityType type = EntityType.valueOf(rawValue.toUpperCase(Locale.ROOT));
+            return new VanillaEntityLoader(type);
+        } catch (IllegalArgumentException exception) {
             return null;
         }
-        return new VanillaEntityLoader(entityType);
     }
 
     // MythicMobs

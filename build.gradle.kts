@@ -8,20 +8,20 @@ plugins {
 repositories {
     mavenCentral()
     gradlePluginPortal()
+    maven("https://repo.codemc.io/repository/EvenMoreFish/")
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://mvn.lumine.io/repository/maven-public/")
-    maven("https://repo.codemc.io/repository/EvenMoreFish/")
     maven("https://repo.codemc.io/repository/FireML/")
 }
 
 dependencies {
     compileOnly(libs.paper.api)
-    compileOnly(libs.evenmorefish) {
-        exclude("de.tr7zw", "item-nbt-api")
-        exclude("com.github.Anon8281", "UniversalScheduler")
-    }
+    compileOnly(libs.evenmorefish)
     compileOnly(libs.mythicmobs)
-    
+
+    // Provided at runtime by EMF.
+    compileOnly(libs.boostedyaml)
+
     implementation(libs.bstats)
     implementation(libs.messagelib)
 }

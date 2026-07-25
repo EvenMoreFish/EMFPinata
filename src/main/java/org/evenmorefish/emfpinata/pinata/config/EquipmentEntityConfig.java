@@ -1,8 +1,7 @@
 package org.evenmorefish.emfpinata.pinata.config;
 
-import com.oheers.fish.FishUtils;
-import com.oheers.fish.items.ItemFactory;
 import dev.dejvokep.boostedyaml.block.implementation.Section;
+import com.oheers.fish.items.ItemFactory;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.EntityEquipment;
@@ -14,6 +13,7 @@ import org.jspecify.annotations.Nullable;
 import uk.firedev.messagelib.replacer.Replacer;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
@@ -35,8 +35,10 @@ public class EquipmentEntityConfig extends EntityConfig<Map<EquipmentSlot, ItemS
             if (section == null) {
                 continue;
             }
-            EquipmentSlot slot = FishUtils.getEnumValue(EquipmentSlot.class, key);
-            if (slot == null) {
+            EquipmentSlot slot;
+            try {
+                slot = EquipmentSlot.valueOf(key.toUpperCase(Locale.ROOT));
+            } catch (IllegalArgumentException exception) {
                 continue;
             }
             ItemStack item = ItemFactory.itemFactory(section).createItem();
