@@ -16,17 +16,16 @@ public class PinataListener implements Listener {
         if (pinata == null) {
             return;
         }
-        event.setDroppedExp(0);
-        event.getDrops().clear();
-        Player player = event.getEntity().getKiller();
-        if (player == null) {
-            return;
-        }
         List<Reward> rewards = pinata.getRewards().getActualValue();
         if (rewards == null || rewards.isEmpty()) {
             return;
         }
-        rewards.forEach(reward -> reward.rewardPlayer(player, event.getEntity().getLocation()));
+        event.setDroppedExp(0);
+        event.getDrops().clear();
+        Player player = event.getEntity().getKiller();
+        if (player != null) {
+            rewards.forEach(reward -> reward.rewardPlayer(player, event.getEntity().getLocation()));
+        }
     }
 
 }
