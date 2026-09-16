@@ -1,5 +1,6 @@
 package org.evenmorefish.emfpinata;
 
+import com.oheers.fish.EvenMoreFish;
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -7,17 +8,26 @@ import org.evenmorefish.emfpinata.command.MainCommand;
 import org.evenmorefish.emfpinata.config.MessageConfig;
 import org.evenmorefish.emfpinata.pinata.PinataListener;
 import org.evenmorefish.emfpinata.pinata.PinataManager;
+import uk.firedev.daisylib.version.VersionChecker;
 
 @SuppressWarnings("UnstableApiUsage")
 public final class EMFPinata extends JavaPlugin {
 
     private static EMFPinata instance;
 
+    private static final String MINIMUM_EMF_VERSION = "2.5.0";
+
     private Metrics metrics = null;
 
     @Override
     public void onLoad() {
-        EMFVersionChecker.checkMinimumVersionInstalled();
+        String emfVersion = EvenMoreFish.getInstance().getPluginMeta().getVersion();
+        if (VersionChecker.isOlderThan(MINIMUM_EMF_VERSION, emfVersion)) {
+            throw new IllegalStateException(
+                "Installed EMF version " + emfVersion + " is below the required minimum version " + MINIMUM_EMF_VERSION + "."
+            );
+        }
+
         registerCommands();
     }
 

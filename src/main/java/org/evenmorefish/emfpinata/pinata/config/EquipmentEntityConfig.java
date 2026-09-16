@@ -1,6 +1,6 @@
 package org.evenmorefish.emfpinata.pinata.config;
 
-import dev.dejvokep.boostedyaml.block.implementation.Section;
+import org.evenmorefish.fish.libs.boostedyaml.block.implementation.Section;
 import com.oheers.fish.items.ItemFactory;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.evenmorefish.emfpinata.api.EntityConfig;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
-import uk.firedev.messagelib.replacer.Replacer;
+import uk.firedev.daisylib.messages.replacer.Replacer;
 
 import java.util.HashMap;
 import java.util.Locale;

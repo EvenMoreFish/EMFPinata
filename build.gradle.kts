@@ -19,11 +19,8 @@ dependencies {
     compileOnly(libs.evenmorefish)
     compileOnly(libs.mythicmobs)
 
-    // Provided at runtime by EMF.
-    compileOnly(libs.boostedyaml)
-
     implementation(libs.bstats)
-    implementation(libs.messagelib)
+    implementation(libs.daisylib)
 }
 
 group = "org.evenmorefish"
@@ -85,7 +82,7 @@ tasks {
         archiveClassifier.set("")
 
         relocate("org.bstats", "org.evenmorefish.emfpinata.libs.bstats")
-        relocate("uk.firedev.messagelib", "org.evenmorefish.emfpinata.libs.messagelib")
+        relocate("uk.firedev.daisylib", "org.evenmorefish.emfpinata.libs.daisylib")
     }
     withType<JavaCompile> {
         options.encoding = "UTF-8"

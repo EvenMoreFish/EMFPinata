@@ -9,7 +9,7 @@ import org.evenmorefish.emfpinata.EMFPinata;
 import org.evenmorefish.emfpinata.command.argument.PinataArgument;
 import org.evenmorefish.emfpinata.config.MessageConfig;
 import org.evenmorefish.emfpinata.pinata.Pinata;
-import uk.firedev.messagelib.replacer.Replacer;
+import uk.firedev.daisylib.messages.replacer.Replacer;
 
 @SuppressWarnings("UnstableApiUsage")
 public class MainCommand {

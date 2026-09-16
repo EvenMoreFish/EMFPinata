@@ -1,7 +1,7 @@
 package org.evenmorefish.emfpinata.pinata;
 
-import com.oheers.fish.api.config.ConfigBase;
-import dev.dejvokep.boostedyaml.block.implementation.Section;
+import com.oheers.fish.config.ConfigBase;
+import org.evenmorefish.fish.libs.boostedyaml.block.implementation.Section;
 import io.lumine.mythic.api.mobs.MythicMob;
 import io.lumine.mythic.bukkit.MythicBukkit;
 import org.bukkit.Location;
@@ -23,12 +23,12 @@ import org.evenmorefish.emfpinata.pinata.loader.MythicEntityLoader;
 import org.evenmorefish.emfpinata.pinata.loader.VanillaEntityLoader;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
-import uk.firedev.messagelib.replacer.Replacer;
+import uk.firedev.daisylib.messages.replacer.Replacer;
 
 import java.util.Locale;
 import java.util.function.Consumer;
 
-public class PinataFactory extends ConfigBase {
+public class PinataFactory {
 
     private final @NonNull Section config;
     private Consumer<Entity> finalChanges = null;

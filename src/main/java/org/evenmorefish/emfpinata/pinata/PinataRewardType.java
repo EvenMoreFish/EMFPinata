@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.evenmorefish.emfpinata.EMFPinata;
 import org.jspecify.annotations.NonNull;
-import uk.firedev.messagelib.replacer.Replacer;
+import uk.firedev.daisylib.messages.replacer.Replacer;
 
 public class PinataRewardType extends RewardType {
 

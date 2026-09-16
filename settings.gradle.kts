@@ -7,10 +7,9 @@ dependencyResolutionManagement {
             library("bstats", "org.bstats:bstats-bukkit:3.1.0")
             library("mythicmobs", "io.lumine:Mythic-Dist:5.6.2")
 
-            library("evenmorefish", "com.oheers.evenmorefish:even-more-fish-plugin:2.4.4-SNAPSHOT")
-            library("boostedyaml", "dev.dejvokep:boosted-yaml:1.3.7")
+            library("evenmorefish", "com.oheers.evenmorefish:even-more-fish-plugin:2.5.0-SNAPSHOT")
 
-            library("messagelib", "uk.firedev:MessageLib:1.0.8")
+            library("daisylib", "uk.firedev:DaisyLib:4.2")
 
             plugin("shadow", "com.gradleup.shadow").version("9.2.1")
             plugin("plugin-yml", "de.eldoria.plugin-yml.bukkit").version("0.8.0")
