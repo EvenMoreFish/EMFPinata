@@ -8,6 +8,7 @@ import org.evenmorefish.emfpinata.command.MainCommand;
 import org.evenmorefish.emfpinata.config.MessageConfig;
 import org.evenmorefish.emfpinata.pinata.PinataListener;
 import org.evenmorefish.emfpinata.pinata.PinataManager;
+import uk.firedev.daisylib.DaisyLib;
 import uk.firedev.daisylib.version.VersionChecker;
 
 @SuppressWarnings("UnstableApiUsage")
@@ -34,6 +35,7 @@ public final class EMFPinata extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        DaisyLib.get().init(this);
 
         MessageConfig.getInstance().reload();
         PinataManager.getInstance().load();
