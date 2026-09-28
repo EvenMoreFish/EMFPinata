@@ -57,7 +57,6 @@ public class UpdateChecker {
     }
 
     // Checks for updates, surprisingly
-    @Contract(" -> new")
     @SuppressWarnings("UnstableApiUsage")
     public @NonNull CompletableFuture<Boolean> checkUpdate() {
         return CompletableFuture.supplyAsync(() -> {

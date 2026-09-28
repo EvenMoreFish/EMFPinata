@@ -24,7 +24,7 @@ public class PinataListener implements Listener {
         event.getDrops().clear();
         Player player = event.getEntity().getKiller();
         if (player != null) {
-            rewards.forEach(reward -> reward.rewardPlayer(player, event.getEntity().getLocation()));
+            rewards.forEach(reward -> reward.give(player, event.getEntity().getLocation()));
         }
     }
 
