@@ -23,7 +23,7 @@ public final class EMFPinata extends JavaPlugin {
     @Override
     public void onLoad() {
         String emfVersion = EvenMoreFish.getInstance().getPluginMeta().getVersion();
-        if (VersionChecker.isOlderThan(MINIMUM_EMF_VERSION, emfVersion)) {
+        if (VersionChecker.isOlderThan(emfVersion, MINIMUM_EMF_VERSION)) {
             throw new IllegalStateException(
                 "Installed EMF version " + emfVersion + " is below the required minimum version " + MINIMUM_EMF_VERSION + "."
             );
